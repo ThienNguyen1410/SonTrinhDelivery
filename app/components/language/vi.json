@@ -1,0 +1,55 @@
+{
+    "common": {
+      "ok": "OK",
+      "cancel": "Hủy bỏ",
+      "back": "Quay lại",
+      "continue": "Tiếp tục",
+      "confirm": "Xác nhận",
+      "enterPasscode": "Nhập mật khẩu",
+      "enterVerifyCode": "Nhập mã xác minh",
+      "next": "Tiếp theo",
+      "done": "Xong",
+      "approve": "Chấp thuận",
+      "reject": "Từ chối",
+      "sendVerifycationCode": "Gửi mã xác thực",
+      "signout": "Đăng xuất",
+      "setting": "Cài đặt",
+      "save": "Lưu"
+    },
+    "errors": {
+      "invalidPhone": "Số điện thoại không hợp lệ",
+      "invalidOTP" : "Mã OTP không hợp lệ",
+      "networkUnstable": "Mạng không ổn định.",
+      "networkUnAvailable": "Mạng không khả dụng."
+    },
+    "loginScreen": {
+      "loginAccount": "Đăng nhập"
+    },
+    "createPasscode": {
+      "title": "Tạo mật khẩu",
+      "caption": "Nhập mật khẩu",
+      "caption2": "Nhập lại mật khẩu",
+      "confirm": "Xác nhận mật khẩu",
+      "confirm2": "Tạo mật khẩu",
+      "error": "Mật khẩu không khớp. Vui lòng thử lại."
+    },
+    "registrationCompleted": {
+      "title": "Đăng ký thành công"
+    },
+    "verification": {
+      "title": "Nhập mã xác thực",
+      "receiveCode": "Không nhận được mã xác thực?",
+      "resend": "Gửi lại",
+      "IncorrectVerification": "Mã xác thực không đúng. Vui lòng thử lại"
+    },
+    
+    "SettingScreen": {
+      "title": "Cài đặt",
+      "general": "Chung",
+      "securityPrivacy": "Bảo mật & Quyền riêng tư",
+      "connectedApps": "Ứng dụng đã kết nối",
+      "references": "Thông tin tham khảo",
+      "currentVersion": "Phiên bản"
+    }
+  }
+  

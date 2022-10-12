@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Button,
   KeyboardAvoidingView,
   Text,
   TextInput,
@@ -13,14 +14,33 @@ import { COLORS } from '../../theme/colors';
 import { styles } from './styles';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthParamList } from '../../navigation/AuthStack';
+import auth from '@react-native-firebase/auth';
+import { AuthParamList, AuthStack } from '../../navigation/AuthStack';
+import { database } from '../../service/firebase/database';
+import { hex } from '../../theme/hex';
+import { AccountContext } from '../../state/AccountContext';
+import { AccountContextType } from '../../state/@types/account';
+import { useCountDown } from '../../utils/hooks/useCountDown';
+import { firebase } from '@react-native-firebase/auth';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, navigation }) => {
 
-
+  const { account, updateUserId } = useContext(AccountContext) as AccountContextType
   const [loading, setLoading] = useState<boolean>(false)
   const confirmation = route.params
+  const { startCountdown, countDown, completed } = useCountDown(60)
   const [code, setCode] = useState('');
+
+  // const getUser = async () => {
+  //   database.ref('user').once('value').then(snapshot => {
+  //     console.log(snapshot.val().userId)
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   getUser()
+  // })
 
   function onConfirmCode() {
     setLoading(true)
@@ -31,7 +51,10 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, n
           [{
             text: "Đăng kí",
             style: "default",
-            onPress: () => navigation.navigate("signup"),
+            onPress: () => {
+              updateUserId(result.user.uid)
+              navigation.navigate("signup")
+            },
           },
           {
             text: "Huỷ Bỏ",
@@ -40,11 +63,30 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, n
           }
           ])
       } else {
-        console.log("navigate to homescreen")
+        navigation.navigate("home")
       }
       console.log(result)
-    }).catch((error) => Alert.alert("Mã OTP không đúng", "Vui lòng thử lại"))
+    }).catch((error) => {
+      setLoading(false)
+      Alert.alert("Mã OTP không đúng", "Vui lòng thử lại")
+    })
   };
+
+  const resend = () => {
+    auth().signInWithPhoneNumber("+84" + account.phone).then(() => {
+      Alert.alert('Gửi lại mã xác minh thành công', 'Vui lòng thử lại', [
+        {
+          text: 'Đồng ý',
+          style: 'cancel',
+        },
+      ]);
+
+      startCountdown()
+
+    }).catch(error => {
+      Alert.alert(error.toString())
+    });
+  }
 
 
   return (
@@ -89,6 +131,20 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, n
             >
 
             </OTPInputView>
+            <TouchableOpacity
+              style={styles.resendBtn}
+              disabled={!completed}
+              onPress={() => resend()}
+            >
+              <Text
+                style={!completed ? styles.txtResend : styles.textResend}
+              >Resend</Text>
+            </TouchableOpacity>
+            {!completed && (
+              <>
+                <Text style={styles.textResendDisable} >{` 00:${countDown}`}</Text>
+              </>
+            )}
             <TouchableOpacity
               onPress={() => onConfirmCode()}
               style={[

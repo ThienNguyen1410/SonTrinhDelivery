@@ -9,7 +9,9 @@ export const AccountProvider: React.FC<React.ReactNode> = ({ children }) => {
         username: '',
         userId: '',
         birth: '',
-        phone: ''
+        phone: '',
+        isAuth: false,
+
     })
 
     const updatePhoneNumber = (phone: string) => {
@@ -25,8 +27,19 @@ export const AccountProvider: React.FC<React.ReactNode> = ({ children }) => {
         account.birth = birth
         setAccount(account)
     }
+
+    const updateUserId = (userId: string) => {
+        account.userId = userId
+        setAccount(account)
+    }
+    const onAuthStateChange = (authState: boolean) => {
+        account.isAuth = authState
+        setAccount(account)
+
+    }
+
     return (
-        <AccountContext.Provider value={{ account, updatePhoneNumber, updateUsername, updateBirth }}>
+        <AccountContext.Provider value={{ account, updatePhoneNumber, updateUsername, updateBirth, updateUserId, onAuthStateChange }}>
             {children}
         </AccountContext.Provider>
 

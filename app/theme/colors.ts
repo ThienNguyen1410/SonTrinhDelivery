@@ -27,4 +27,6 @@ export const COLORS = {
   black: hex.black,
 
   gray: hex.IGray30,
+
+  offwhite: hex.offWhite,
 };

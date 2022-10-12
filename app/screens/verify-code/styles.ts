@@ -1,5 +1,6 @@
 import {StyleSheet, Dimensions, Image, Platform} from 'react-native';
 import {COLORS} from '../../theme/colors';
+import {hex} from '../../theme/hex';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -119,5 +120,29 @@ export const styles = StyleSheet.create({
     width: '80%',
     height: 200,
     color: 'black',
+  },
+  resendBtn: {
+    paddingHorizontal: 0,
+  },
+  textResend: {
+    color: COLORS.primary,
+    fontWeight: 'bold',
+  },
+
+  textResendDisable: {
+    color: hex.IGray50,
+  },
+  txtDis: {
+    color: hex.CGreen,
+    marginBottom: 20,
+    paddingHorizontal: 0,
+  },
+  txtReceive: {
+    color: hex.IGray50,
+    marginHorizontal: 2,
+  },
+  txtResend: {
+    color: hex.IGray50,
+    fontWeight: 'bold',
   },
 });

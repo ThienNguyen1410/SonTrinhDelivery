@@ -4,6 +4,7 @@ import SignInScreen from '../screens/signin/sign-in';
 import { VerifyCodeScreen } from '../screens/verify-code/verify-code-screen';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { SignUpScreen } from '../screens/signup/sign-up';
+import HomeScreen from '../screens/home/home-screen';
 
 const Stack = createNativeStackNavigator<AuthParamList>();
 
@@ -11,6 +12,7 @@ export type AuthParamList = {
   signup: undefined;
   signin: undefined;
   verifycode: { confirmation?: FirebaseAuthTypes.ConfirmationResult };
+  home: undefined;
 };
 
 export const AuthStack = () => {
@@ -23,7 +25,7 @@ export const AuthStack = () => {
       <Stack.Screen name="signin" component={SignInScreen} />
       <Stack.Screen name="verifycode" component={VerifyCodeScreen} />
       <Stack.Screen name="signup" component={SignUpScreen} />
-
+      <Stack.Screen name="home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };

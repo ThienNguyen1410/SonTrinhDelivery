@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import {
     View,
     Text,
@@ -6,10 +6,6 @@ import {
     TextInput,
     ScrollView,
     StatusBar,
-    KeyboardAvoidingView,
-    Alert,
-    useColorScheme,
-    StyleSheetProperties,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,14 +17,18 @@ import { styles } from './styles';
 import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType, IAccount } from '../../state/@types/account';
 import { database } from '../../service/firebase/database';
+import { AppStackList } from '../../navigation/AppStack';
+import HomeScreen from '../home/home-screen';
+import { StackScreenProps } from '@react-navigation/stack';
 
-type Props = NativeStackScreenProps<AuthParamList, 'signin'>;
+type Props = NativeStackScreenProps<AppStackList, 'home'>;
 
-export const SignUpScreen = ({ navigation }: Props) => {
+export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({ navigation }) => {
     Feather.loadFont().then;
     MaterialCommunityIcons.loadFont().then;
     const { account, updateUsername, updateBirth } = useContext(AccountContext) as AccountContextType
     const [password, setPassword] = React.useState("");
+    const [visible, setVisible] = useState<boolean>(true)
     const [confirmPassword, setConfirmPassword] = React.useState("");
 
     const handleUsernameChange = (val: string) => {
@@ -48,16 +48,23 @@ export const SignUpScreen = ({ navigation }: Props) => {
         setConfirmPassword(val);
     };
 
+    const isPasswordMatch = (): boolean => {
+        return password === confirmPassword
+    }
+
+    function setPasswordVisiblity() {
+        !visible ? setVisible(true) : setVisible(false)
+    }
+
     const onSignUp = async (user: IAccount) => {
         database.ref("user").set({
+            userId: user.userId,
             username: user.username,
             phone: user.phone,
             birth: user.birth
         })
-
+        navigation.navigate('home')
     }
-
-
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
@@ -134,17 +141,18 @@ export const SignUpScreen = ({ navigation }: Props) => {
                         />
                         <TextInput
                             placeholder="Mật khẩu của bạn"
+                            secureTextEntry={visible}
                             style={styles.textInput}
                             autoCapitalize="none"
                             onChangeText={val => handlePasswordChange(val)}
                         />
-                        {/* <TouchableOpacity>
-                            {data.secureTextEntry ? (
+                        <TouchableOpacity onPress={() => setPasswordVisiblity()}>
+                            {visible ? (
                                 <MaterialCommunityIcons name="eye-off" color="grey" size={20} />
                             ) : (
                                 <MaterialCommunityIcons name="eye" color="grey" size={20} />
                             )}
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
                     </View>
 
                     <Text
@@ -164,26 +172,33 @@ export const SignUpScreen = ({ navigation }: Props) => {
                         />
                         <TextInput
                             placeholder="Mật khẩu của bạn"
-                            // secureTextEntry={data.confirm_secureTextEntry ? true : false}
+                            secureTextEntry={visible}
                             style={styles.textInput}
                             autoCapitalize="none"
                             onChangeText={val => handleConfirmPasswordChange(val)}
                         />
-                        <TouchableOpacity>
-                            {/* {data.secureTextEntry ? (
-                                <MaterialCommunityIcons name="eye-off" color="grey" size={20} />
-                            ) : (
-                                <MaterialCommunityIcons name="eye" color="grey" size={20} />
-                            )} */}
-                        </TouchableOpacity>
+                        {isPasswordMatch() ? (
+                            <Animatable.View animation="bounceIn">
+                                <Feather
+                                    name="check-circle"
+                                    color={COLORS.validIcon}
+                                    size={20}
+                                />
+                            </Animatable.View>
+                        ) : (
+                            <Animatable.View animation="bounceIn">
+                                <Feather name="x-circle" color={COLORS.error} size={20} />
+                            </Animatable.View>
+                        )}
                     </View>
                     <View style={styles.button}>
                         <TouchableOpacity
                             onPress={() => onSignUp(account)}
+                            // disabled={isPasswordMatch()}
                             style={[
                                 styles.signIn,
                                 {
-                                    borderColor: COLORS.primary,
+                                    borderColor: isPasswordMatch() ? COLORS.primary : COLORS.gray,
                                     borderWidth: 1,
                                     marginTop: 15,
                                 },
@@ -192,7 +207,7 @@ export const SignUpScreen = ({ navigation }: Props) => {
                                 style={[
                                     styles.textSign,
                                     {
-                                        color: COLORS.primary,
+                                        color: isPasswordMatch() ? COLORS.primary : COLORS.gray,
                                     },
                                 ]}>
                                 Ok

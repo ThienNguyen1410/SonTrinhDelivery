@@ -9,6 +9,7 @@ import {
   StatusBar,
   Alert,
   ScrollView,
+  ColorPropType,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,41 +27,34 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
-  const { account, updatePhoneNumber } = useContext(AccountContext) as AccountContextType
-  const [data, setData] = React.useState('');
-  const [validPhone, setValidPhone] = useState<boolean>(false);
+  const { updatePhoneNumber } = useContext(AccountContext) as AccountContextType
   const [phoneNumber, setPhoneNumber] = React.useState<string>('');
 
   const onPhoneNumberChange = (val: string) => {
     setPhoneNumber(val);
   };
 
-  function checkPhoneNumber(): boolean {
-    if (phoneNumber.length >= 10 && phoneNumber.length < 12) {
-      return true;
-    } else {
-      return false;
-    }
+  function isValidPhoneNumber(): boolean {
+    var regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+    return regex.test(phoneNumber)
   }
 
-  // function signInWithPhoneNumber() {
-  //   auth()
-  //     .signInWithPhoneNumber('+84' + phoneNumber)
-  //     .then(confirmation => navigation.navigate('verifycode', { confirmation }))
-  //     .catch(error => {
-  //       Alert.alert('Số điện thoại không đúng', 'Vui lòng thử lại', [
-  //         {
-  //           text: 'Đồng ý',
-  //           style: 'cancel',
-  //         },
-  //       ]);
-  //       console.log(error);
-  //     });
-  // }
-
-  function signInWithPhoneNumber() {
-    updatePhoneNumber(phoneNumber)
-    navigation.navigate('signup')
+  function onSignInWithPhoneNumber() {
+    auth()
+      .signInWithPhoneNumber('+84' + phoneNumber)
+      .then(confirmation => {
+        updatePhoneNumber(phoneNumber)
+        navigation.navigate('verifycode', { confirmation })
+      })
+      .catch(error => {
+        // Alert.alert('Số điện thoại không đúng', 'Vui lòng thử lại', [
+        //   {
+        //     text: 'Đồng ý',
+        //     style: 'cancel',
+        //   },
+        // ]);
+        Alert.alert(error.toString())
+      });
   }
 
   return (
@@ -101,7 +95,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               style={[styles.textInput]}
               autoCapitalize="none"
             />
-            {checkPhoneNumber() ? (
+            {isValidPhoneNumber() ? (
               <Animatable.View animation="bounceIn">
                 <Feather
                   name="check-circle"
@@ -157,12 +151,12 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
 
         <View style={styles.button}>
           <TouchableOpacity
-            onPress={() => signInWithPhoneNumber()}
-            // disabled={!checkPhoneNumber()}
+            onPress={() => onSignInWithPhoneNumber()}
+            disabled={!isValidPhoneNumber()}
             style={[
               styles.signIn,
               {
-                borderColor: COLORS.primary,
+                borderColor: isValidPhoneNumber() ? COLORS.primary : COLORS.gray,
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -171,7 +165,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               style={[
                 styles.textSign,
                 {
-                  color: COLORS.primary,
+                  color: isValidPhoneNumber() ? COLORS.primary : COLORS.gray,
                 },
               ]}>
               Đăng Nhập

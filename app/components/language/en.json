@@ -1,0 +1,42 @@
+{
+    "common": {
+      "ok": "OK",
+      "cancel": "Cancel",
+      "back": "Back",
+      "continue": "Continue",
+      "confirm": "Confirm",
+      "enterPasscode": "Enter your passcode",
+      "enterVerifyCode": "Enter verification code",
+      "next": "Next",
+      "done": "Done",
+      "approve": "Approve",
+      "reject": "Cancel",
+      "sendVerifycationCode": "Send verification code",
+      "signout": "Sign out",
+      "history": "History",
+      "setting": "Settings",
+      "save": "Save"
+    },
+    "errors": {
+      "invalidPhone" : "Invalid Phone Number",
+      "networkUnstable": "Network unstable",
+      "networkUnAvailable": "Network unvailable"
+    },
+    "loginScreen": {
+      "title": "Login with phone number"
+    },
+    "verification": {
+        "title": "Enter the verification code",
+        "receiveCode": "Didn’t receive verification code?",
+        "resend": "Resend",
+        "IncorrectVerification": "Incorrect verification code. Please try again."
+      },
+    "SettingScreen": {
+        "title": "Settings",
+        "general": "General",
+        "securityPrivacy": "Security & Privacy",
+        "connectedApps": "Connected Apps",
+        "references": "References",
+        "currentVersion": "Version"
+      }
+}
