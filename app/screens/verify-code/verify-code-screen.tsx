@@ -26,7 +26,7 @@ import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, navigation }) => {
 
-  const { account, updateUserId } = useContext(AccountContext) as AccountContextType
+  const { account, updateUserId, onAuthStateChange } = useContext(AccountContext) as AccountContextType
   const [loading, setLoading] = useState<boolean>(false)
   const confirmation = route.params
   const { startCountdown, countDown, completed } = useCountDown(60)
@@ -63,6 +63,7 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, n
           }
           ])
       } else {
+        onAuthStateChange(!result?.additionalUserInfo?.isNewUser)
         navigation.navigate("home")
       }
       console.log(result)
