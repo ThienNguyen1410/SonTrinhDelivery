@@ -21,6 +21,8 @@ import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType } from '../../state/@types/account';
 import { profile } from '../../assets/profile/profile';
 import { AuthParamList } from '../../navigation/AuthStack';
+import { translate } from '../../components/language';
+import { timeAgoInWords } from 'i18n-js/typings/helpers';
 
 const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     navigation,
@@ -34,8 +36,8 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
             <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
             <View style={styles.header_container}>
                 <View style={styles.header} >
-                    <Text style={styles.text_header}>Xin chào : {account.username} </Text>
-                    <Text style={styles.text_footer}>Bạn muốn vận chuyển gì hôm nay nào ?</Text>
+                    <Text style={styles.text_header}>{translate('HomeScreen.greeting')} : {account.username} </Text>
+                    <Text style={styles.text_footer}>{translate('HomeScreen.slogan')}</Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('profile')}>
                     <View style={styles.avatar_container}>
@@ -60,7 +62,7 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
                                 marginTop: 35,
                             },
                         ]}>
-                        Nơi Lấy Hàng
+                        {translate('HomeScreen.pickup')}
                     </Text>
                     <View style={styles.action}>
                         <MaterialCommunityIcons
@@ -69,7 +71,7 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
                             size={20}
                         />
                         <GooglePlacesAutocomplete
-                            placeholder="Địa Điểm"
+                            placeholder={translate('HomeScreen.address')}
                             onPress={(data, details = null) => {
                                 console.log(data, details);
                             }}
@@ -90,7 +92,7 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
                                 marginTop: 35,
                             },
                         ]}>
-                        Nơi Nhận Hàng
+                        {translate("HomeScreen.destination")}
                     </Text>
                     <View style={styles.action}>
                         <MaterialCommunityIcons
@@ -99,7 +101,7 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
                             size={20}
                         />
                         <GooglePlacesAutocomplete
-                            placeholder='Địa Điểm'
+                            placeholder={translate('HomeScreen.address')}
                             onPress={(data, details = null) => {
                                 console.log(data, details);
                             }}

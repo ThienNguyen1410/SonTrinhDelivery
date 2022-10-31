@@ -45,6 +45,15 @@
       "resend": "Gửi lại",
       "IncorrectVerification": "Mã xác thực không đúng. Vui lòng thử lại"
     },
+
+    "HomeScreen": {
+      "greeting" : "Xin chào",
+      "slogan" : "Bạn muốn vận chuyển gì hôm nay nào",
+      "pickup" : "Nơi Lấy Hàng",
+      "destination" : "Nơi Nhận Hàng",
+      "address" : "Địa điểm"
+      
+    },
     
     "SettingScreen": {
       "title": "Cài đặt",

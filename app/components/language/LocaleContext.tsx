@@ -1,30 +1,32 @@
-import i18n from './i18n';
-import React from 'react';
-import I18n from 'i18n-js';
+import React, { useEffect } from 'react';
 import { translate } from './translate';
 import { useStorage } from '../../utils/storages/storages';
+import i18n from './i18n';
 
 interface AppContextInterface {
   translate: any;
   changeLocale: any;
 }
 
-const LocaleContext = React.createContext<any>(null);
+const LocaleContext = React.createContext<any>('');
 
 export const LocaleContextProvider = props => {
-  const [locale, changeLocale] = useStorage('@language', 'en');
-  I18n.Locales = locale;
+  const [locale, changeLocale] = useStorage('@language', 'vi');
+  i18n.locale = locale;
+  console.log(locale)
 
   const _changeLocale = locale => {
-    I18n.Locales = locale;
     changeLocale(locale);
   };
+
+  useEffect(() => {
+    i18n.locale = locale
+  }, [locale])
 
   return (
     <LocaleContext.Provider
       value={{
-        ...I18n,
-        localeProvider: locale,
+        locale,
         translate,
         changeLocale: _changeLocale,
       }}>

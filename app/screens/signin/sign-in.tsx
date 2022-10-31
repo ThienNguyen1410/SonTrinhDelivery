@@ -23,6 +23,17 @@ import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType } from '../../state/@types/account';
 import { translate, useTranslation } from '../../components/language';
 
+const DATA_LANGUAGE = [
+  {
+    title: "English",
+    value: "en",
+  },
+  {
+    title: "Tiếng Việt",
+    value: "vi",
+  },
+]
+
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,
 }) => {
@@ -40,6 +51,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
     return regex.test(phoneNumber)
   }
 
+
   function onSignInWithPhoneNumber() {
     auth()
       .signInWithPhoneNumber('+84' + phoneNumber)
@@ -56,10 +68,6 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
         // ]);
         Alert.alert(error.toString())
       });
-  }
-  const { changeLocale } = useTranslation()
-  const useChangeSelect = async (data) => {
-    changeLocale(data)
   }
 
   return (
@@ -117,8 +125,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
         </ScrollView>
         <View style={styles.button}>
           <TouchableOpacity
-            // onPress={() => onSignInWithPhoneNumber()}
-            onPress={() => changeLocale('vi')}
+            onPress={() => onSignInWithPhoneNumber()}
             disabled={!isValidPhoneNumber()}
             style={[
               styles.signIn,

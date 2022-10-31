@@ -7,6 +7,7 @@ import { AccountContext, AccountProvider } from './app/state/AccountContext';
 import { AccountContextType } from './app/state/@types/account';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { AppStack } from './app/navigation/AppStack';
+import { LocaleContextProvider } from './app/components/language/LocaleContext';
 
 const App = () => {
 
@@ -20,12 +21,14 @@ const App = () => {
   }, [])
   return (
     <NavigationContainer>
-      <AccountProvider>
-        {/* {!user ?
+      <LocaleContextProvider>
+        <AccountProvider>
+          {/* {!user ?
           (<AuthStack />) : (<AppStack />)
         } */}
-        <AuthStack />
-      </AccountProvider>
+          <AuthStack />
+        </AccountProvider>
+      </LocaleContextProvider>
     </NavigationContainer>
   );
 };

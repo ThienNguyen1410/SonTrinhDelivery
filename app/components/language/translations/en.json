@@ -34,6 +34,14 @@
         "resend": "Resend",
         "IncorrectVerification": "Incorrect verification code. Please try again."
       },
+
+      "HomeScreen": {
+        "greeting" : "Hello",
+        "slogan" : "Let's delivery today !",
+        "pickup" : "Pickup",
+        "destination" : "Destination",
+        "address" : "Address"
+      },
     "SettingScreen": {
         "title": "Settings",
         "general": "General",

@@ -7,6 +7,7 @@ import {
     ScrollView,
     StatusBar,
     Image,
+    Alert,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,18 +22,6 @@ import auth from '@react-native-firebase/auth';
 import { useStorage } from '../../utils/storages/storages';
 import { useTranslation } from '../../components/language';
 
-
-const DATA_LANGUAGE = [
-    {
-        title: "English",
-        value: "en",
-    },
-    {
-        title: "Tiếng Việt",
-        value: "vi",
-    },
-]
-
 export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
     navigation,
 }) => {
@@ -40,24 +29,28 @@ export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
 
     MaterialIcons.loadFont()
     const { account } = useContext(AccountContext) as AccountContextType
-
-    const { localeProvider, changeLocale } = useTranslation()
-    const languageSelect =
-        DATA_LANGUAGE.find((item) => item.value === localeProvider) || DATA_LANGUAGE[0]
-
-    const useChangeSelect = async (data) => {
-        changeLocale(data.value)
-        setChangeLanguage(true)
-        // TODO update title
-    }
+    const { changeLocale } = useTranslation()
 
     const onPressBack = () => {
         navigation.navigate('home')
     }
 
-
-
-
+    const onChangeLanguage = () => {
+        Alert.alert("Thay đổi ngôn ngữ ", "Bạn vui lòng chọn ngôn ngữ muốn thay đổi",
+            [{
+                text: "Tiếng Việt",
+                style: "default",
+                onPress: () => {
+                    changeLocale('vi')
+                },
+            },
+            {
+                text: "English",
+                style: "default",
+                onPress: () => changeLocale('en'),
+            }
+            ])
+    }
 
     const onSignout = () => {
         auth().signOut().then(() => {
@@ -95,7 +88,8 @@ export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
                         ]}>
                         Tài Khoản
                     </Text>
-                    <TouchableOpacity style={styles.customer_info_container}>
+                    <TouchableOpacity style={styles.customer_info_container}
+                        onPress={() => onChangeLanguage()}>
                         <MaterialCommunityIcons name="account-heart" color={COLORS.primary} size={30} />
                         <Text
                             style={styles.textInput}
