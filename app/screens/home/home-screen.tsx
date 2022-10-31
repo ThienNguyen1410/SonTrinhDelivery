@@ -7,6 +7,7 @@ import {
     TextInput,
     ScrollView,
     StatusBar,
+    Image,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,12 +15,14 @@ import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../../theme/colors';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AppStackList } from '../../navigation/AppStack';
+import { BottomTabParamList } from '../../navigation/BottomTab';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType } from '../../state/@types/account';
+import { profile } from '../../assets/profile/profile';
+import { AuthParamList } from '../../navigation/AuthStack';
 
-const HomeScreen: FC<StackScreenProps<AppStackList, 'home'>> = ({
+const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     navigation,
 }) => {
     MaterialCommunityIcons.loadFont();
@@ -29,10 +32,16 @@ const HomeScreen: FC<StackScreenProps<AppStackList, 'home'>> = ({
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
-            <View style={styles.header}>
-                <Text style={styles.text_header}>Xin chào : {account.username} </Text>
-                <Text style={styles.text_footer}>Bạn muốn vận chuyển gì hôm nay nào ?</Text>
-
+            <View style={styles.header_container}>
+                <View style={styles.header} >
+                    <Text style={styles.text_header}>Xin chào : {account.username} </Text>
+                    <Text style={styles.text_footer}>Bạn muốn vận chuyển gì hôm nay nào ?</Text>
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('profile')}>
+                    <View style={styles.avatar_container}>
+                        <Image style={styles.profile} source={require("../../assets/profile/profile.png")} />
+                    </View>
+                </TouchableOpacity>
             </View>
             <Animatable.View
                 animation="fadeInUpBig"

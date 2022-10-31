@@ -17,7 +17,7 @@ import { styles } from './styles';
 import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType, IAccount } from '../../state/@types/account';
 import { database } from '../../service/firebase/database';
-import { AppStackList } from '../../navigation/AppStack';
+import { AppStackList } from '../../navigation/BottomTab';
 import HomeScreen from '../home/home-screen';
 import { StackScreenProps } from '@react-navigation/stack';
 
@@ -57,8 +57,7 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({ navi
     }
 
     const onSignUp = async (user: IAccount) => {
-        database.ref("user").set({
-            userId: user.userId,
+        database.ref(`user/${user.userId}`).set({
             username: user.username,
             phone: user.phone,
             birth: user.birth
@@ -124,7 +123,7 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({ navi
                             autoCapitalize="none"
                         />
                     </View>
-                    <Text
+                    {/* <Text
                         style={[
                             styles.text_footer,
                             {
@@ -190,7 +189,7 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({ navi
                                 <Feather name="x-circle" color={COLORS.error} size={20} />
                             </Animatable.View>
                         )}
-                    </View>
+                    </View> */}
                     <View style={styles.button}>
                         <TouchableOpacity
                             onPress={() => onSignUp(account)}

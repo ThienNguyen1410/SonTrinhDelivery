@@ -14,7 +14,8 @@
       "sendVerifycationCode": "Gửi mã xác thực",
       "signout": "Đăng xuất",
       "setting": "Cài đặt",
-      "save": "Lưu"
+      "save": "Lưu",
+      "welcome" : "Chào Mừng"
     },
     "errors": {
       "invalidPhone": "Số điện thoại không hợp lệ",
@@ -23,7 +24,9 @@
       "networkUnAvailable": "Mạng không khả dụng."
     },
     "loginScreen": {
-      "loginAccount": "Đăng nhập"
+      "title": "Đăng nhập",
+      "phone" : "Số điện thoại",
+      "placeHolder" : "Vui lòng nhập số điện thoại"
     },
     "createPasscode": {
       "title": "Tạo mật khẩu",

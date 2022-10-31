@@ -1,19 +1,20 @@
-import i18n from 'i18n-js';
+import {I18n} from 'i18n-js';
+import en from './translations/en.json';
+import vi from './translations/vi.json';
 
-import en from './en.json';
-// import vi from "./vi.json"
-
-i18n.fallbacks = true;
+const i18n = new I18n({en, vi});
+i18n.enableFallback = true;
 // i18n.translations = { en, vi }
 i18n.translations = {en};
 
 i18n.defaultLocale = 'en';
 
-i18n.Locales = 'en';
+i18n.locale = 'en';
 
 type DefaultLocale = typeof en;
 export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
 
+// via: https://stackoverflow.com/a/65333050
 type RecursiveKeyOf<TObj extends object> = {
   [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<
     TObj[TKey],

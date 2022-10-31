@@ -15,7 +15,8 @@
       "signout": "Sign out",
       "history": "History",
       "setting": "Settings",
-      "save": "Save"
+      "save": "Save",
+      "welcome" : "Welcome"
     },
     "errors": {
       "invalidPhone" : "Invalid Phone Number",
@@ -23,7 +24,9 @@
       "networkUnAvailable": "Network unvailable"
     },
     "loginScreen": {
-      "title": "Login with phone number"
+      "title": "Login with phone number",
+      "phone" : "Phone number",
+      "placeHolder" : "Please input your phone number"
     },
     "verification": {
         "title": "Enter the verification code",

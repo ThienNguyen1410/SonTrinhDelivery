@@ -6,12 +6,35 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.primary,
   },
+  header_container: {
+    flexDirection: 'row',
+    paddingTop: 50,
+    paddingBottom: 50,
+  },
+
   header: {
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 50,
   },
+
+  avatar_container: {
+    height: 35,
+    width: 35,
+    margin: 18,
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.primary,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  profile: {
+    height: 35,
+    width: 35,
+    resizeMode: 'cover',
+  },
+
   footer: {
     flex: 3,
     backgroundColor: '#fff',

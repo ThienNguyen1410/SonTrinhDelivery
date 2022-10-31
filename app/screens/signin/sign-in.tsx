@@ -21,6 +21,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { AuthParamList } from '../../navigation/AuthStack';
 import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType } from '../../state/@types/account';
+import { translate, useTranslation } from '../../components/language';
 
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,
@@ -56,12 +57,16 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
         Alert.alert(error.toString())
       });
   }
+  const { changeLocale } = useTranslation()
+  const useChangeSelect = async (data) => {
+    changeLocale(data)
+  }
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Chào Mừng!</Text>
+        <Text style={styles.text_header}>{translate('common.welcome')}</Text>
       </View>
       <Animatable.View
         animation="fadeInUpBig"
@@ -78,7 +83,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               color: COLORS.titleText,
             },
           ]}>
-          Số Điện Thoại
+          {translate("loginScreen.phone")}
         </Text>
         <ScrollView>
           <View style={styles.action}>
@@ -88,7 +93,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               size={20}
             />
             <TextInput
-              placeholder="Vui lòng nhập số điện thoại"
+              placeholder={translate('loginScreen.placeHolder')?.toString()}
               placeholderTextColor={COLORS.placeHoldertext}
               keyboardType="phone-pad"
               onChangeText={val => onPhoneNumberChange(val)}
@@ -110,48 +115,10 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
             )}
           </View>
         </ScrollView>
-        {/* <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}>
-          Mật Khẩu
-        </Text>
-        <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="cellphone-lock"
-            color={COLORS.icon}
-            size={20}
-          />
-          <TextInput
-            placeholder="Mật khẩu của bạn"
-            placeholderTextColor={COLORS.placeHoldertext}
-            secureTextEntry={data.secureTextEntry ? true : false}
-            style={styles.textInput}
-            autoCapitalize="none"
-          />
-          <TouchableOpacity>
-            {data.secureTextEntry ? (
-              <MaterialCommunityIcons
-                name="eye-off"
-                color={COLORS.icon}
-                size={20}
-              />
-            ) : (
-              <MaterialCommunityIcons
-                name="eye"
-                color={COLORS.icon}
-                size={20}
-              />
-            )}
-          </TouchableOpacity>
-        </View> */}
-
         <View style={styles.button}>
           <TouchableOpacity
-            onPress={() => onSignInWithPhoneNumber()}
+            // onPress={() => onSignInWithPhoneNumber()}
+            onPress={() => changeLocale('vi')}
             disabled={!isValidPhoneNumber()}
             style={[
               styles.signIn,
@@ -168,7 +135,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
                   color: isValidPhoneNumber() ? COLORS.primary : COLORS.gray,
                 },
               ]}>
-              Đăng Nhập
+              {translate('loginScreen.title')}
             </Text>
           </TouchableOpacity>
         </View>

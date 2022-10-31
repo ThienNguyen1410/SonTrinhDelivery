@@ -26,26 +26,30 @@ import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, navigation }) => {
 
-  const { account, updateUserId, onAuthStateChange } = useContext(AccountContext) as AccountContextType
+  const { account, updateUserId, onAuthStateChange, updateUsername, updateBirth, updatePhoneNumber } = useContext(AccountContext) as AccountContextType
   const [loading, setLoading] = useState<boolean>(false)
   const confirmation = route.params
   const { startCountdown, countDown, completed } = useCountDown(60)
   const [code, setCode] = useState('');
 
-  // const getUser = async () => {
-  //   database.ref('user').once('value').then(snapshot => {
-  //     console.log(snapshot.val().userId)
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   getUser()
-  // })
+  const onAuthUser = async (userId: string) => {
+    database.ref(`user/${userId}`).once('value').then(snapshot => {
+      const userInfo = snapshot.val()
+      updateUserId(userInfo)
+      if (!account.userId) {
+        updateUsername(userInfo.username)
+        updateUserId(userInfo.phone)
+        updateBirth(userInfo.birth)
+      }
+    }).catch((error) => console.log(error))
+  }
 
   function onConfirmCode() {
     setLoading(true)
     confirmation?.confirmation?.confirm(code).then((result) => {
-      if (result?.additionalUserInfo?.isNewUser) {
+      console.log(typeof result)
+      onAuthUser(result.user.userId)
+      if (account.userId == null) {
         setLoading(false)
         Alert.alert("Người Dùng Mới", "Có vẻ bạn là người dùng mới, hãy đăng kí tài khoản nhé",
           [{
@@ -139,7 +143,7 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({ route, n
             >
               <Text
                 style={!completed ? styles.txtResend : styles.textResend}
-              >Resend</Text>
+              >Gửi lại</Text>
             </TouchableOpacity>
             {!completed && (
               <>
