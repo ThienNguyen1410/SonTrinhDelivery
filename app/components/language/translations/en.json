@@ -12,27 +12,48 @@
       "approve": "Approve",
       "reject": "Cancel",
       "sendVerifycationCode": "Send verification code",
-      "signout": "Sign out",
       "history": "History",
       "setting": "Settings",
       "save": "Save",
       "welcome" : "Welcome"
     },
+
     "errors": {
       "invalidPhone" : "Invalid Phone Number",
       "networkUnstable": "Network unstable",
       "networkUnAvailable": "Network unvailable"
     },
+
+    "signout"  : {
+      "title" : "Sign out",
+      "comfirmSignout" : "Are you sure sign out ? "
+    },
+
+    "signup"  : {
+      "title" : "Sign up",
+      "newUser" : "New user",
+      "createAccount" : "Let create new account"
+    },
+
+    "language": {
+      "title":"Language",
+      "changeLanguage": "Change language",
+      "languageChoice":  "Please choose the language"
+    },
+
     "loginScreen": {
       "title": "Login with phone number",
       "phone" : "Phone number",
       "placeHolder" : "Please input your phone number"
     },
+
     "verification": {
         "title": "Enter the verification code",
         "receiveCode": "Didn’t receive verification code?",
         "resend": "Resend",
-        "IncorrectVerification": "Incorrect verification code. Please try again."
+        "resendOTP" : "Resend verification code ",
+        "IncorrectVerification": "Incorrect verification code",
+        "tryAgain" : "Please try again"
       },
 
       "HomeScreen": {
@@ -44,6 +65,7 @@
       },
     "SettingScreen": {
         "title": "Settings",
+        "profile": "Customer Info",
         "general": "General",
         "securityPrivacy": "Security & Privacy",
         "connectedApps": "Connected Apps",

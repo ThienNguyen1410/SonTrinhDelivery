@@ -21,8 +21,7 @@ import { AccountContext } from '../../state/AccountContext';
 import { AccountContextType } from '../../state/@types/account';
 import { profile } from '../../assets/profile/profile';
 import { AuthParamList } from '../../navigation/AuthStack';
-import { translate } from '../../components/language';
-import { timeAgoInWords } from 'i18n-js/typings/helpers';
+import { translate, useTranslation } from '../../components/language';
 
 const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     navigation,
@@ -30,6 +29,7 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     MaterialCommunityIcons.loadFont();
     Feather.loadFont();
     const { account } = useContext(AccountContext) as AccountContextType
+    const { locale } = useTranslation()
 
     return (
         <View style={styles.container}>

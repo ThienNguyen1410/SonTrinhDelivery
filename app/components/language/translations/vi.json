@@ -12,17 +12,36 @@
       "approve": "Chấp thuận",
       "reject": "Từ chối",
       "sendVerifycationCode": "Gửi mã xác thực",
-      "signout": "Đăng xuất",
       "setting": "Cài đặt",
       "save": "Lưu",
       "welcome" : "Chào Mừng"
     },
+
     "errors": {
       "invalidPhone": "Số điện thoại không hợp lệ",
       "invalidOTP" : "Mã OTP không hợp lệ",
       "networkUnstable": "Mạng không ổn định.",
       "networkUnAvailable": "Mạng không khả dụng."
     },
+
+    "signout"  : {
+      "title" : "Đăng xuất",
+      "comfirmSignout" : "Bạn muốn đăng xuất ?"
+    },
+
+    "signup"  : {
+      "title" : "Đăng kí",
+      "newUser" : "Người Dùng Mới",
+      "createAccount" : "Có vẻ bạn là người dùng mới, hãy đăng kí tài khoản nhé"
+    },
+
+    "language": {
+      "title": "Ngôn Ngữ",
+      "changeLanguage": "Thay đổi ngôn ngữ",
+      "languageChoice":  "Bạn vui lòng chọn ngôn ngữ muốn thay đổi"
+    },
+
+
     "loginScreen": {
       "title": "Đăng nhập",
       "phone" : "Số điện thoại",
@@ -43,7 +62,9 @@
       "title": "Nhập mã xác thực",
       "receiveCode": "Không nhận được mã xác thực?",
       "resend": "Gửi lại",
-      "IncorrectVerification": "Mã xác thực không đúng. Vui lòng thử lại"
+      "resendOTP": "Gửi lại mã xác minh thành công",
+      "IncorrectVerification": "Mã xác thực không đúng",
+      "tryAgain": "Vui lòng thử lại"
     },
 
     "HomeScreen": {
@@ -52,11 +73,11 @@
       "pickup" : "Nơi Lấy Hàng",
       "destination" : "Nơi Nhận Hàng",
       "address" : "Địa điểm"
-      
     },
     
     "SettingScreen": {
       "title": "Cài đặt",
+      "profile": "Thông tin khách hàng",
       "general": "Chung",
       "securityPrivacy": "Bảo mật & Quyền riêng tư",
       "connectedApps": "Ứng dụng đã kết nối",

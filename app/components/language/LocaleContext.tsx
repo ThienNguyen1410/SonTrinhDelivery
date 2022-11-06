@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { translate } from './translate';
-import { useStorage } from '../../utils/storages/storages';
+import React, {useEffect} from 'react';
+import {translate} from './translate';
+import {useStorage} from '../../utils/storages/storages';
 import i18n from './i18n';
 
 interface AppContextInterface {
@@ -13,15 +13,11 @@ const LocaleContext = React.createContext<any>('');
 export const LocaleContextProvider = props => {
   const [locale, changeLocale] = useStorage('@language', 'vi');
   i18n.locale = locale;
-  console.log(locale)
 
   const _changeLocale = locale => {
     changeLocale(locale);
+    i18n.locale = locale;
   };
-
-  useEffect(() => {
-    i18n.locale = locale
-  }, [locale])
 
   return (
     <LocaleContext.Provider
