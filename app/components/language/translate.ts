@@ -12,6 +12,6 @@ export function translate(key: TxKeyPath, options?: any) {
   return key ? i18n.t(key, options) : null;
 }
 
-export const useTranslation = (props?) => {
+export const useTranslation = (props?: any) => {
   return useContext(LocaleContext);
 };

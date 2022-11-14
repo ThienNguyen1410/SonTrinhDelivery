@@ -36,10 +36,8 @@ export const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: 3,
+    flexGrow: 1,
     backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },

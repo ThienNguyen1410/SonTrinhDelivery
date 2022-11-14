@@ -1,4 +1,4 @@
-import React, {FC, useContext, useState} from 'react';
+import React, { FC, useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -10,21 +10,21 @@ import {
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {AuthParamList} from '../../navigation/AuthStack';
-import {AccountContextType} from '../../state/@types/account';
-import {AccountContext} from '../../state/AccountContext';
-import {COLORS} from '../../theme/colors';
-import {styles} from './styles';
-import {StackScreenProps} from '@react-navigation/stack';
+import { AuthParamList } from '../../navigation/AuthStack';
+import { AccountContextType } from '../../state/@types/account';
+import { AccountContext } from '../../state/AccountContext';
+import { COLORS } from '../../theme/colors';
+import { styles } from './styles';
+import { StackScreenProps } from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
-import {translate, useTranslation} from '../../components/language';
+import { translate, useTranslation } from '../../components/language';
 
 export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
   navigation,
 }) => {
   MaterialIcons.loadFont();
-  const {account} = useContext(AccountContext) as AccountContextType;
-  const {changeLocale} = useTranslation();
+  const { account } = useContext(AccountContext) as AccountContextType;
+  const { changeLocale } = useTranslation();
 
   const onPressBack = () => {
     navigation.navigate('home');
@@ -81,7 +81,7 @@ export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
         <TouchableOpacity onPress={() => onPressBack()}>
           <MaterialIcons name="arrow-back-ios" size={26} />
         </TouchableOpacity>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
           {translate('SettingScreen.profile')}
         </Text>
       </View>
@@ -96,7 +96,7 @@ export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
             <Text style={styles.text_profile}>{account.phone}</Text>
           </View>
         </View>
-        <View style={{justifyContent: 'space-between'}}>
+        <View style={{ justifyContent: 'space-between' }}>
           <Text
             style={[
               styles.text_footer,
@@ -104,7 +104,7 @@ export const ProfileScreen: FC<StackScreenProps<AuthParamList, 'profile'>> = ({
                 marginTop: 35,
               },
             ]}>
-            Tài Khoản
+            {translate('account.title')}
           </Text>
           <TouchableOpacity
             style={styles.customer_info_container}

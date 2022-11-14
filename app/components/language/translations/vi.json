@@ -35,6 +35,20 @@
       "createAccount" : "Có vẻ bạn là người dùng mới, hãy đăng kí tài khoản nhé"
     },
 
+    "account" : {
+        "title" : "Tài Khoản",
+        "createAccout" :"Tạo tài khoản",
+        "phone" : "Số điện thoại",
+        "birth" : "Ngày tháng năm sinh",
+        "name" : "Quý Danh"
+    },
+
+    "placeholder" : {
+        "name" : "họ và tên của quý khách",
+        "birth" : "ngày tháng năm sinh của quý khách"
+    },
+
+
     "language": {
       "title": "Ngôn Ngữ",
       "changeLanguage": "Thay đổi ngôn ngữ",

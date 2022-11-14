@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import * as React from 'react';
 
 import {
     View,
@@ -22,13 +22,15 @@ import { AccountContextType } from '../../state/@types/account';
 import { profile } from '../../assets/profile/profile';
 import { AuthParamList } from '../../navigation/AuthStack';
 import { translate, useTranslation } from '../../components/language';
+import SearchBar from '../../components/SearchBar';
 
-const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
+const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
     navigation,
 }) => {
     MaterialCommunityIcons.loadFont();
     Feather.loadFont();
-    const { account } = useContext(AccountContext) as AccountContextType
+    const { account } = React.useContext(AccountContext) as AccountContextType
+
     const { locale } = useTranslation()
 
     return (
@@ -45,75 +47,75 @@ const HomeScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
                     </View>
                 </TouchableOpacity>
             </View>
-            <Animatable.View
-                animation="fadeInUpBig"
-                style={[
-                    styles.footer,
-                    {
-                        backgroundColor: COLORS.background,
-                    },
-                ]}>
+            <SearchBar />
+            <ScrollView style={styles.footer}>
+                <Animatable.View
+                    animation="fadeInUpBig"
+                    style={[
+                        {
+                            backgroundColor: COLORS.background,
+                        },
+                    ]}>
 
-                <View>
-                    <Text
-                        style={[
-                            styles.text_footer,
-                            {
-                                marginTop: 35,
-                            },
-                        ]}>
-                        {translate('HomeScreen.pickup')}
-                    </Text>
-                    <View style={styles.action}>
-                        <MaterialCommunityIcons
-                            name="map-marker"
-                            color={COLORS.primary}
-                            size={20}
-                        />
-                        <GooglePlacesAutocomplete
-                            placeholder={translate('HomeScreen.address')}
-                            onPress={(data, details = null) => {
-                                console.log(data, details);
-                            }}
-                            query={{
-                                key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
-                                language: 'vi',
-                                components: "country:vn"
-                            }}
-                        />
+                    <View>
+                        <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                            {translate('HomeScreen.pickup')}
+                        </Text>
+                        <View style={styles.action}>
+                            <MaterialCommunityIcons
+                                name="map-marker"
+                                color={COLORS.primary}
+                                size={20}
+                            />
+                            <GooglePlacesAutocomplete
+                                placeholder={translate('HomeScreen.address')}
+                                onPress={(data, details = null) => {
+                                    console.log(data, details);
+                                }}
+                                query={{
+                                    key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
+                                    language: 'vi',
+                                    components: "country:vn"
+                                }}
+                            />
+                        </View>
 
-
+                        <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                            {translate("HomeScreen.destination")}
+                        </Text>
+                        <View style={styles.action}>
+                            <MaterialCommunityIcons
+                                name="archive-marker"
+                                color={COLORS.primary}
+                                size={20}
+                            />
+                            <GooglePlacesAutocomplete
+                                placeholder={translate('HomeScreen.address')}
+                                onPress={(data, details = null) => {
+                                    console.log(data, details);
+                                }}
+                                query={{
+                                    key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
+                                    language: 'vi',
+                                    components: "country:vn"
+                                }}
+                            />
+                        </View>
                     </View>
-
-                    <Text
-                        style={[
-                            styles.text_footer,
-                            {
-                                marginTop: 35,
-                            },
-                        ]}>
-                        {translate("HomeScreen.destination")}
-                    </Text>
-                    <View style={styles.action}>
-                        <MaterialCommunityIcons
-                            name="archive-marker"
-                            color={COLORS.primary}
-                            size={20}
-                        />
-                        <GooglePlacesAutocomplete
-                            placeholder={translate('HomeScreen.address')}
-                            onPress={(data, details = null) => {
-                                console.log(data, details);
-                            }}
-                            query={{
-                                key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
-                                language: 'vi',
-                                components: "country:vn"
-                            }}
-                        />
-                    </View>
-                </View>
-            </Animatable.View>
+                </Animatable.View>
+            </ScrollView>
         </View >
     );
 };

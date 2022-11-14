@@ -35,6 +35,19 @@
       "createAccount" : "Let create new account"
     },
 
+    "account" : {
+        "title" : "Account",
+        "createAccout" :"Create Account",
+        "phone" : "Phone",
+        "birth" : "Date of Birth",
+        "name" : "Name"
+    },
+
+     "placeholder" : {
+        "name" : "Your name",
+        "birth" : "Date of birth"
+    },
+
     "language": {
       "title":"Language",
       "changeLanguage": "Change language",
