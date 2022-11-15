@@ -43,23 +43,10 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({
   const [code, setCode] = useState('');
 
   const onAuthUser = async (userId: string) => {
-    database
+    const snapshot = await database
       .ref(`user/${userId}`)
       .once('value')
-      .then(snapshot => {
-        const userInfo = snapshot.val();
-        console.log(userId)
-        console.log(userInfo)
-        if (!userInfo) {
-          updateUserId(userId);
-          updateUsername(userInfo.username);
-          updatePhoneNumber(userInfo.phone);
-          updateBirth(userInfo.birth);
-        } else {
-          return;
-        }
-      })
-      .catch(error => console.log(error));
+    return snapshot.val()
   };
 
   function onConfirmCode() {
@@ -67,8 +54,9 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({
     confirmation?.confirmation
       ?.confirm(code)
       .then(result => {
-        onAuthUser(result.user.uid).then(() => {
-          if (account.userId == '') {
+        onAuthUser(result.user.uid).then((snapshot) => {
+          console.log(snapshot)
+          if (snapshot === null) {
             setLoading(false);
             Alert.alert(
               translate('signup.newUser'),
@@ -90,6 +78,10 @@ export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({
               ],
             );
           } else {
+            updateUserId(result.user.uid);
+            updateUsername(snapshot.username);
+            updatePhoneNumber(snapshot.phone);
+            updateBirth(snapshot.birth);
             onAuthStateChange(!result?.additionalUserInfo?.isNewUser);
             navigation.navigate('home');
           }
