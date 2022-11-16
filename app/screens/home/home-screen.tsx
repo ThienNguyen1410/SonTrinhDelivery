@@ -23,6 +23,7 @@ import { profile } from '../../assets/profile/profile';
 import { AuthParamList } from '../../navigation/AuthStack';
 import { translate, useTranslation } from '../../components/language';
 import SearchBar from '../../components/SearchBar';
+import { DeliverySumaryInfo } from '../../components/delivery/delivery-sumary-info';
 
 const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
     navigation,
@@ -30,8 +31,25 @@ const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
     MaterialCommunityIcons.loadFont();
     Feather.loadFont();
     const { account } = React.useContext(AccountContext) as AccountContextType
-
     const { locale } = useTranslation()
+    const deliveryInfo = [
+        {
+            from: "TP Hồ Chí Minh",
+            to: "Vũng Tàu",
+            driver: "Nguyễn Văn A"
+        },
+        {
+            from: "Vũng Tàu",
+            to: "TP Hồ Chí Minh",
+            driver: "Nguyễn Văn B"
+        },
+        {
+            from: "Cà Mau",
+            to: "Vũng Tàu",
+            driver: "Nguyễn Văn C"
+        },
+    ]
+    deliveryInfo.map(info => console.log(info))
 
     return (
         <View style={styles.container}>
@@ -43,6 +61,7 @@ const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('profile')}>
                     <View style={styles.avatar_container}>
+
                         <Image style={styles.profile} source={require("../../assets/profile/profile.png")} />
                     </View>
                 </TouchableOpacity>
@@ -50,70 +69,8 @@ const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
             <SearchBar />
             <ScrollView style={styles.footer}>
                 <Animatable.View
-                    animation="fadeInUpBig"
-                    style={[
-                        {
-                            backgroundColor: COLORS.background,
-                        },
-                    ]}>
-
-                    <View>
-                        <Text
-                            style={[
-                                styles.text_footer,
-                                {
-                                    marginTop: 35,
-                                },
-                            ]}>
-                            {translate('HomeScreen.pickup')}
-                        </Text>
-                        <View style={styles.action}>
-                            <MaterialCommunityIcons
-                                name="map-marker"
-                                color={COLORS.primary}
-                                size={20}
-                            />
-                            <GooglePlacesAutocomplete
-                                placeholder={translate('HomeScreen.address')}
-                                onPress={(data, details = null) => {
-                                    console.log(data, details);
-                                }}
-                                query={{
-                                    key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
-                                    language: 'vi',
-                                    components: "country:vn"
-                                }}
-                            />
-                        </View>
-
-                        <Text
-                            style={[
-                                styles.text_footer,
-                                {
-                                    marginTop: 35,
-                                },
-                            ]}>
-                            {translate("HomeScreen.destination")}
-                        </Text>
-                        <View style={styles.action}>
-                            <MaterialCommunityIcons
-                                name="archive-marker"
-                                color={COLORS.primary}
-                                size={20}
-                            />
-                            <GooglePlacesAutocomplete
-                                placeholder={translate('HomeScreen.address')}
-                                onPress={(data, details = null) => {
-                                    console.log(data, details);
-                                }}
-                                query={{
-                                    key: 'AIzaSyBNkZblbZA8hxxwOJMEs3xft9qUoJ_993A',
-                                    language: 'vi',
-                                    components: "country:vn"
-                                }}
-                            />
-                        </View>
-                    </View>
+                    animation="fadeInUpBig">
+                    <DeliverySumaryInfo />
                 </Animatable.View>
             </ScrollView>
         </View >

@@ -37,9 +37,9 @@ export const styles = StyleSheet.create({
 
   footer: {
     flexGrow: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+    backgroundColor: COLORS.black,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   text_header: {
     color: COLORS.black,
@@ -51,14 +51,11 @@ export const styles = StyleSheet.create({
     color: COLORS.black,
     fontWeight: 'bold',
     fontSize: 14,
-  },
-  action: {
-    flexDirection: 'row',
     marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
   },
+
+  sub_verticalContainer: {},
+
   actionError: {
     flexDirection: 'row',
     marginTop: 10,
