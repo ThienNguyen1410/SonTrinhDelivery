@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import {
-    View,
-    Text,
-    TouchableOpacity,
-    TextInput,
-    ScrollView,
-    StatusBar,
-    Image,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  StatusBar,
+  Image,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,55 +26,73 @@ import SearchBar from '../../components/SearchBar';
 import { DeliverySumaryInfo } from '../../components/delivery/delivery-sumary-info';
 
 const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
-    navigation,
+  navigation,
 }) => {
-    MaterialCommunityIcons.loadFont();
-    Feather.loadFont();
-    const { account } = React.useContext(AccountContext) as AccountContextType
-    const { locale } = useTranslation()
-    const deliveryInfo = [
-        {
-            from: "TP Hồ Chí Minh",
-            to: "Vũng Tàu",
-            driver: "Nguyễn Văn A"
-        },
-        {
-            from: "Vũng Tàu",
-            to: "TP Hồ Chí Minh",
-            driver: "Nguyễn Văn B"
-        },
-        {
-            from: "Cà Mau",
-            to: "Vũng Tàu",
-            driver: "Nguyễn Văn C"
-        },
-    ]
-    deliveryInfo.map(info => console.log(info))
+  MaterialCommunityIcons.loadFont();
+  Feather.loadFont();
+  const { account } = React.useContext(AccountContext) as AccountContextType;
+  const { locale } = useTranslation();
 
-    return (
-        <View style={styles.container}>
-            <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
-            <View style={styles.header_container}>
-                <View style={styles.header} >
-                    <Text style={styles.text_header}>{translate('HomeScreen.greeting')} : {account.username} </Text>
-                    <Text style={styles.text_footer}>{translate('HomeScreen.slogan')}</Text>
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate('profile')}>
-                    <View style={styles.avatar_container}>
+  const onDetailDeliveryPress = () => {
+    navigation.navigate('delivery')
+  }
 
-                        <Image style={styles.profile} source={require("../../assets/profile/profile.png")} />
-                    </View>
-                </TouchableOpacity>
-            </View>
-            <SearchBar />
-            <ScrollView style={styles.footer}>
-                <Animatable.View
-                    animation="fadeInUpBig">
-                    <DeliverySumaryInfo />
-                </Animatable.View>
-            </ScrollView>
-        </View >
-    );
+  const deliveryInfo = [
+    {
+      from: 'TP Hồ Chí Minh',
+      to: 'Vũng Tàu',
+      driver: 'Nguyễn Văn',
+    },
+    {
+      from: 'Vũng Tàu',
+      to: 'TP Hồ Chí Minh',
+      driver: 'Nguyễn Văn',
+    },
+    {
+      from: 'Cà Mau',
+      to: 'Vũng Tàu',
+      driver: 'C Nguyễn ',
+    },
+  ];
+
+  return (
+    <View style={styles.container}>
+      <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
+      <View style={styles.header_container}>
+        <View style={styles.header}>
+          <Text style={styles.text_header}>
+            {translate('HomeScreen.greeting')} : {account.username}{' '}
+          </Text>
+          <Text style={styles.text_footer}>
+            {translate('HomeScreen.slogan')}
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('profile')}>
+          <View style={styles.avatar_container}>
+            <Image
+              style={styles.profile}
+              source={require('../../assets/profile/profile.png')}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <SearchBar />
+      <ScrollView style={styles.footer}>
+        {deliveryInfo.map(info => {
+          return (
+            <Animatable.View animation="fadeInUpBig">
+              <DeliverySumaryInfo
+                driver={info.driver}
+                from={info.from}
+                to={info.to}
+                eventHandler={onDetailDeliveryPress}
+              />
+            </Animatable.View>
+          );
+        })}
+      </ScrollView>
+    </View>
+  );
 };
 
 export default HomeScreen;

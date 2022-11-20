@@ -55,6 +55,24 @@
       "languageChoice":  "Bạn vui lòng chọn ngôn ngữ muốn thay đổi"
     },
 
+    "vehicle" : {
+      "title" : "Loại xe",
+      "licensePlate" : "Biển số xe"
+    },
+
+    "delivery" : {
+      "from" : "Địa điểm lấy hàng",
+      "to" : "Địa điểm nhận hàng",
+      "date" : "Thời gian",
+      "timeStart" : "Thời gian đi",
+      "timeArrive" : "Thời gian đến",
+      "status" : "Trạng thái"
+    },
+
+    "order" : {
+      "title" : "Đặt hàng",
+      "createOrder" :"Tạo Đơn Hàng"
+    },
 
     "loginScreen": {
       "title": "Đăng nhập",
@@ -87,6 +105,12 @@
       "pickup" : "Nơi Lấy Hàng",
       "destination" : "Nơi Nhận Hàng",
       "address" : "Địa điểm"
+    },
+
+    "DeliveryScreen" : {
+      "title" : "Thông tin vận chuyển",
+      "driverInfo" : "Thông tin tài xế",
+      "vehicleInformation" : "Thông tin phương tiện"
     },
     
     "SettingScreen": {

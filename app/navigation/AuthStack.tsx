@@ -8,6 +8,7 @@ import HomeScreen from '../screens/home/home-screen';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { BottomTab, BottomTabParamList } from './BottomTab';
 import { ProfileScreen } from '../screens/profile/profile';
+import { DeliveryScreen } from '../screens/delivery/delivery-info';
 
 const Stack = createNativeStackNavigator<AuthParamList>();
 
@@ -16,7 +17,8 @@ export type AuthParamList = {
   signin: undefined;
   verifycode: { confirmation?: FirebaseAuthTypes.ConfirmationResult };
   home: NavigatorScreenParams<BottomTabParamList>;
-  profile: undefined
+  profile: undefined;
+  delivery: undefined;
 };
 
 export const AuthStack = () => {
@@ -31,6 +33,7 @@ export const AuthStack = () => {
       <Stack.Screen name="signup" component={SignUpScreen} />
       <Stack.Screen name="home" component={BottomTab} />
       <Stack.Screen name='profile' component={ProfileScreen} />
+      <Stack.Screen name='delivery' component={DeliveryScreen} />
     </Stack.Navigator>
   );
 };

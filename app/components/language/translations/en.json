@@ -53,6 +53,25 @@
       "changeLanguage": "Change language",
       "languageChoice":  "Please choose the language"
     },
+    
+    "vehicle" : {
+      "title" : "Vehicle",
+      "licensePlate" : "Vehicle license plate"
+    },
+
+    "delivery" : {
+      "from" : "From",
+      "to" : "To",
+      "date":"Date",
+      "timeStart" : "Time Start",
+      "timeArrive" : "Time Arrive",
+      "status" : "Status"
+    },
+
+    "order" : {
+      "title" : "Order",
+      "createOrder" : "Create Order"
+    },
 
     "loginScreen": {
       "title": "Login with phone number",
@@ -69,13 +88,20 @@
         "tryAgain" : "Please try again"
       },
 
-      "HomeScreen": {
-        "greeting" : "Hello",
-        "slogan" : "Let's delivery today !",
-        "pickup" : "Pickup",
-        "destination" : "Destination",
-        "address" : "Address"
-      },
+    "HomeScreen": {
+      "greeting" : "Hello",
+      "slogan" : "Let's delivery today !",
+      "pickup" : "Pickup",
+      "destination" : "Destination",
+      "address" : "Address"
+    },
+
+    "DeliveryScreen" : {
+      "title" : "Delivery Infomation",
+      "driverInfo" : "Driver",
+      "vehicleInformation" : "Vehicle Information"
+    },  
+
     "SettingScreen": {
         "title": "Settings",
         "profile": "Customer Info",
