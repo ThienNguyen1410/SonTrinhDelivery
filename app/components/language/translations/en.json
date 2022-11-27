@@ -38,7 +38,7 @@
     "account" : {
         "title" : "Account",
         "createAccout" :"Create Account",
-        "phone" : "Phone",
+        "phone" : "Phone number",
         "birth" : "Date of Birth",
         "name" : "Name"
     },
@@ -60,12 +60,24 @@
     },
 
     "delivery" : {
+      "location" : "Location",
       "from" : "From",
       "to" : "To",
       "date":"Date",
       "timeStart" : "Time Start",
       "timeArrive" : "Time Arrive",
       "status" : "Status"
+    },
+    "recipient" : {
+      "title" : "Recipient",
+      "name" : "Recipient's Name",
+      "phone" : "Phone contact"
+    },
+
+    "package" : {
+      "title" : "Package detail",
+      "detail" : "What kind of package ?",
+      "weight" : "Weight of package"
     },
 
     "order" : {

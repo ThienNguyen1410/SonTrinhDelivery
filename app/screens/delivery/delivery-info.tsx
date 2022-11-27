@@ -29,6 +29,10 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
         navigation.navigate('home');
     };
 
+    const onCreateOrder = () => {
+        navigation.navigate('createOrder')
+    }
+
     return (
         <Animatable.View style={styles.container}>
             <View style={styles.header}>
@@ -178,12 +182,15 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.text_button}>
-                        {translate('order.createOrder')}
-                    </Text>
-                </TouchableOpacity>
+
             </ScrollView>
+            <TouchableOpacity
+                onPress={() => onCreateOrder()}
+                style={styles.button}>
+                <Text style={styles.text_button}>
+                    {translate('order.createOrder')}
+                </Text>
+            </TouchableOpacity>
         </Animatable.View >
     );
 };

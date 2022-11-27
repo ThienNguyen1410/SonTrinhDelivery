@@ -61,12 +61,25 @@
     },
 
     "delivery" : {
+      "location" : "Địa điểm",
       "from" : "Địa điểm lấy hàng",
       "to" : "Địa điểm nhận hàng",
       "date" : "Thời gian",
       "timeStart" : "Thời gian đi",
       "timeArrive" : "Thời gian đến",
       "status" : "Trạng thái"
+    },
+    "recipient" : {
+      "title" : "Người Nhận",
+      "name" : "Tên Người Nhận",
+      "phone" : "Số Điện Thoại Liên Lạc"
+    },
+
+    "package" : {
+      "title" : "Thông tin đơn hàng",
+      "detail" : "Loại hàng hoá ?",
+      "weight" :"Trọng lượng của đơn hàng"
+      
     },
 
     "order" : {

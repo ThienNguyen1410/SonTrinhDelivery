@@ -6,9 +6,11 @@ import { SignUpScreen } from "../screens/signup/sign-up";
 import HomeScreen from '../screens/home/home-screen';
 import { View } from 'react-native';
 import { COLORS } from '../theme/colors';
+import { CreateOrderScreen } from '../screens/order/create-order-screen';
 
 export type BottomTabParamList = {
     home: undefined;
+    createOrder: undefined;
 }
 
 const Tab = createBottomTabNavigator<BottomTabParamList>()
@@ -47,7 +49,7 @@ export const BottomTab = () => {
                     <MaterialCommunityIcons name='package-variant' color={color} size={28} />
                 </View>)
             }}
-                name="book" component={HomeScreen} />
+                name="createOrder" component={CreateOrderScreen} />
 
             <Tab.Screen options={{
                 tabBarIcon: ({ color }) => (<MaterialCommunityIcons name='history' color={color} size={28} />)
