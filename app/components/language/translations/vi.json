@@ -78,7 +78,8 @@
     "package" : {
       "title" : "Thông tin đơn hàng",
       "detail" : "Loại hàng hoá ?",
-      "weight" :"Trọng lượng của đơn hàng"
+      "weight" :"Trọng lượng của đơn hàng",
+      "note" : "Ghi chú cho tài xế"
       
     },
 

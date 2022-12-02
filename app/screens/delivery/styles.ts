@@ -69,6 +69,7 @@ export const styles = StyleSheet.create({
   },
 
   delivery_info: {
+    marginTop: 10,
     justifyContent: 'space-between',
   },
 

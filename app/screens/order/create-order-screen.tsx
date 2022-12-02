@@ -29,10 +29,19 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
 
     Feather.loadFont().then;
     MaterialCommunityIcons.loadFont().then;
+
+    const [from, setFrom] = useState<string>("");
+    const [to, setTo] = useState<string>("");
+    const [receiver, setReceiver] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [packages, setPackages] = useState<string>("");
+    const [weight, setWeight] = useState<string>("")
+    const [note, setNote] = useState<string>("")
+
+
     const onPressBack = () => {
         navigation.navigate('home');
     };
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -64,7 +73,9 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                             />
                             <TextInput
                                 placeholder={translate('delivery.from')}
-                                style={styles.textInput} />
+                                style={styles.textInput}
+                                onChangeText={from => setFrom(from)}
+                            />
                         </View>
                         <View style={styles.action}>
                             <MaterialCommunityIcons
@@ -76,6 +87,7 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                                 placeholder={translate('delivery.to')}
                                 style={styles.textInput}
                                 autoCapitalize="none"
+                                onChangeText={newText => setTo(newText)}
                             />
                         </View>
                     </View>
@@ -97,7 +109,9 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                             />
                             <TextInput
                                 placeholder={translate('recipient.name')}
-                                style={styles.textInput} />
+                                style={styles.textInput}
+                                onChangeText={newText => setReceiver(newText)}
+                            />
                         </View>
                         <View style={styles.action}>
                             <MaterialCommunityIcons
@@ -109,6 +123,7 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                                 placeholder={translate('recipient.phone')}
                                 style={styles.textInput}
                                 autoCapitalize="none"
+                                onChangeText={newText => setPhone(newText)}
                             />
                         </View>
                     </View>
@@ -130,7 +145,9 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                             />
                             <TextInput
                                 placeholder={translate('package.detail')}
-                                style={styles.textInput} />
+                                style={styles.textInput}
+                                onChangeText={newText => setPackages(newText)}
+                            />
                         </View>
                         <View style={styles.action}>
                             <MaterialCommunityIcons
@@ -142,6 +159,21 @@ export const CreateOrderScreen: FC<StackScreenProps<AuthParamList, 'createOrder'
                                 placeholder={translate('package.weight')}
                                 style={styles.textInput}
                                 autoCapitalize="none"
+                                onChangeText={newText => setWeight(newText)}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.note}>
+                        <View style={styles.action}>
+                            <MaterialCommunityIcons
+                                name="note-edit"
+                                color={COLORS.primary}
+                                size={30}
+                            />
+                            <TextInput
+                                placeholder={translate('package.note')}
+                                style={styles.textInput}
+                                onChangeText={newText => setNote(newText)}
                             />
                         </View>
                     </View>

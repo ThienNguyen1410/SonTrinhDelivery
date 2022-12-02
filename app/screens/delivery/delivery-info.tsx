@@ -58,7 +58,7 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
                     <View style={styles.driver_info}>
                         <Text style={styles.name}>Nguyễn Hoàng Thiên</Text>
                         <Text style={styles.phone}>0359512974</Text>
-                        <Text style={styles.date}>0359512974</Text>
+                        <Text style={styles.date}>14/10/1999</Text>
                     </View>
                 </View>
                 <View style={styles.vehicle_info}>

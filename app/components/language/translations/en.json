@@ -77,7 +77,8 @@
     "package" : {
       "title" : "Package detail",
       "detail" : "What kind of package ?",
-      "weight" : "Weight of package"
+      "weight" : "Weight of package",
+      "note" : "Note for driver"
     },
 
     "order" : {

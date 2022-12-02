@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
 
   footer: {
     flexGrow: 1,
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.offwhite,
     paddingHorizontal: 10,
     paddingVertical: 10,
   },

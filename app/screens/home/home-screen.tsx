@@ -41,17 +41,19 @@ const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
     {
       from: 'TP Hồ Chí Minh',
       to: 'Vũng Tàu',
-      driver: 'Nguyễn Văn',
+      driver: 'Tài xế',
     },
     {
       from: 'Vũng Tàu',
       to: 'TP Hồ Chí Minh',
-      driver: 'Nguyễn Văn',
+
+      driver: 'Tài xế',
     },
     {
       from: 'Cà Mau',
       to: 'Vũng Tàu',
-      driver: 'C Nguyễn ',
+
+      driver: 'Tài xế',
     },
   ];
 

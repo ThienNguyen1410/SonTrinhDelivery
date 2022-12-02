@@ -5,6 +5,7 @@ import { COLORS } from '../../theme/colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AuthParamList } from '../../navigation/AuthStack';
+import { translate } from '../language';
 export const DeliverySumaryInfo = ({ driver, from, to, eventHandler }) => {
 
   return (
@@ -57,14 +58,15 @@ export const DeliverySumaryInfo = ({ driver, from, to, eventHandler }) => {
               alignItems: 'center',
               margin: 5,
             }}>
-            <Text>From</Text>
-            <MaterialCommunityIcons name="dots-vertical" size={25} />
+            <Text>{translate('HomeScreen.pickup')}</Text>
+            <MaterialCommunityIcons name="dots-vertical" size={20} />
             <Text>{from}</Text>
           </View>
           <MaterialCommunityIcons
             style={{ paddingTop: 20 }}
             name="truck-delivery-outline"
-            size={40}
+            size={30}
+            color={COLORS.primary}
           />
           <View
             style={{
@@ -73,7 +75,7 @@ export const DeliverySumaryInfo = ({ driver, from, to, eventHandler }) => {
               alignItems: 'center',
               margin: 5,
             }}>
-            <Text>To</Text>
+            <Text>{translate("HomeScreen.destination")}</Text>
             <MaterialCommunityIcons name="dots-vertical" size={25} />
             <Text>{to} </Text>
           </View>

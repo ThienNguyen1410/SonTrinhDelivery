@@ -38,6 +38,14 @@ export const styles = StyleSheet.create({
     elevation: 10,
     marginBottom: 10,
   },
+  note: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    elevation: 10,
+  },
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
@@ -56,8 +64,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 16,
+    marginBottom: 16,
   },
   actionError: {
     flexDirection: 'row',
@@ -79,7 +87,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginTop: 20,
+    marginBottom: 10,
   },
   signIn: {
     width: '100%',
