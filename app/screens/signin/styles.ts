@@ -58,6 +58,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 50,
   },
+  driverContainer: {
+    color: COLORS.primary,
+    marginTop: 30,
+  },
+  driverText: {
+    color: COLORS.primary,
+    textDecorationLine: 'underline',
+  },
   signIn: {
     width: '100%',
     height: 50,

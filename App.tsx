@@ -8,10 +8,13 @@ import { AccountContextType } from './app/state/@types/account';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { AppStack } from './app/navigation/AppStack';
 import { LocaleContextProvider } from './app/components/language/LocaleContext';
+import { LogBox } from 'react-native';
 
 const App = () => {
 
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
+  LogBox.ignoreAllLogs();
+
 
   useEffect(() => {
     auth().onAuthStateChanged(userState => {

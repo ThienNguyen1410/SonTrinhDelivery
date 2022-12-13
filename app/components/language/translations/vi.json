@@ -20,7 +20,9 @@
     "errors": {
       "invalidPhone": "Số điện thoại không hợp lệ",
       "invalidOTP" : "Mã OTP không hợp lệ",
-      "networkUnstable": "Mạng không ổn định.",
+      "fieldEmpty" : "Có thông tin chưa được nhập",
+      "re-input" : "Vui lòng nhập lại",
+      "networkUnstable": "Mạng không ổn Định.",
       "networkUnAvailable": "Mạng không khả dụng."
     },
 
@@ -44,8 +46,11 @@
     },
 
     "placeholder" : {
-        "name" : "họ và tên của quý khách",
-        "birth" : "ngày tháng năm sinh của quý khách"
+        "name" : "Họ và tên của quý khách",
+        "birth" : "Ngày tháng năm sinh của quý khách",
+        "phone" :"Số điện thoại liên lạc",
+        "vehicle" : "Loại xe quý khách đang sử dụng",
+        "licensePlate":"Biển số xe của quý khách"
     },
 
 

@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, {FC, useContext, useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -14,50 +14,38 @@ import {
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import { COLORS } from '../../theme/colors';
-import { styles } from './styles';
+import {COLORS} from '../../theme/colors';
+import {styles} from './styles';
 import auth from '@react-native-firebase/auth';
-import { StackScreenProps } from '@react-navigation/stack';
-import { AuthParamList } from '../../navigation/AuthStack';
-import { AccountContext } from '../../state/AccountContext';
-import { AccountContextType } from '../../state/@types/account';
-import { translate, useTranslation } from '../../components/language';
-
-const DATA_LANGUAGE = [
-  {
-    title: "English",
-    value: "en",
-  },
-  {
-    title: "Tiếng Việt",
-    value: "vi",
-  },
-]
+import {StackScreenProps} from '@react-navigation/stack';
+import {AuthParamList} from '../../navigation/AuthStack';
+import {AccountContext} from '../../state/AccountContext';
+import {AccountContextType} from '../../state/@types/account';
+import {translate, useTranslation} from '../../components/language';
+import {isValidPhoneNumber} from '../../utils/Utils';
 
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
-  const { updatePhoneNumber } = useContext(AccountContext) as AccountContextType
+  const {updatePhoneNumber} = useContext(AccountContext) as AccountContextType;
   const [phoneNumber, setPhoneNumber] = React.useState<string>('');
 
   const onPhoneNumberChange = (val: string) => {
     setPhoneNumber(val);
   };
 
-  function isValidPhoneNumber(): boolean {
-    var regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-    return regex.test(phoneNumber)
+  function onDriverSignUp() {
+    navigation.navigate('driverSignUp');
   }
-
 
   function onSignInWithPhoneNumber() {
     auth()
       .signInWithPhoneNumber('+84' + phoneNumber)
       .then(confirmation => {
-        updatePhoneNumber(phoneNumber)
-        navigation.navigate('verifycode', { confirmation })
+        updatePhoneNumber(phoneNumber);
+        navigation.navigate('verifycode', {confirmation});
       })
       .catch(error => {
         // Alert.alert('Số điện thoại không đúng', 'Vui lòng thử lại', [
@@ -66,7 +54,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
         //     style: 'cancel',
         //   },
         // ]);
-        Alert.alert(error.toString())
+        Alert.alert(error.toString());
       });
   }
 
@@ -91,7 +79,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               color: COLORS.titleText,
             },
           ]}>
-          {translate("loginScreen.phone")}
+          {translate('loginScreen.phone')}
         </Text>
         <ScrollView>
           <View style={styles.action}>
@@ -108,7 +96,7 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               style={[styles.textInput]}
               autoCapitalize="none"
             />
-            {isValidPhoneNumber() ? (
+            {isValidPhoneNumber(phoneNumber) ? (
               <Animatable.View animation="bounceIn">
                 <Feather
                   name="check-circle"
@@ -122,6 +110,11 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               </Animatable.View>
             )}
           </View>
+          <TouchableOpacity
+            style={styles.driverContainer}
+            onPress={() => onDriverSignUp()}>
+            <Text style={styles.driverText}>Đăng kí làm tài xế</Text>
+          </TouchableOpacity>
         </ScrollView>
         <View style={styles.button}>
           <TouchableOpacity
@@ -130,7 +123,9 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
             style={[
               styles.signIn,
               {
-                borderColor: isValidPhoneNumber() ? COLORS.primary : COLORS.gray,
+                borderColor: isValidPhoneNumber()
+                  ? COLORS.primary
+                  : COLORS.gray,
                 borderWidth: 1,
                 marginTop: 15,
               },

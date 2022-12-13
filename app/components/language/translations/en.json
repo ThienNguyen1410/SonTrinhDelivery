@@ -21,6 +21,8 @@
     "errors": {
       "invalidPhone" : "Invalid Phone Number",
       "networkUnstable": "Network unstable",
+      "fieldEmpty" : "Missing field",
+      "re-input" : "Please input correct field",
       "networkUnAvailable": "Network unvailable"
     },
 
@@ -45,7 +47,10 @@
 
      "placeholder" : {
         "name" : "Your name",
-        "birth" : "Date of birth"
+        "birth" : "Date of birth",
+        "phone" :"Phone contact",
+        "vehicle" : "Kind of vehicle",
+        "licensePlate":"Your license plate"
     },
 
     "language": {

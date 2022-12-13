@@ -56,8 +56,8 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
                         source={require('../../assets/profile/profile.png')}
                     />
                     <View style={styles.driver_info}>
-                        <Text style={styles.name}>Nguyễn Hoàng Thiên</Text>
-                        <Text style={styles.phone}>0359512974</Text>
+                        <Text style={styles.name}>Nguyễn Văn A</Text>
+                        <Text style={styles.phone}>0905006787</Text>
                         <Text style={styles.date}>14/10/1999</Text>
                     </View>
                 </View>
@@ -90,7 +90,7 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
                         <View style={styles.vertical_container}>
                             <Text style={styles.textInput}>{translate('vehicle.licensePlate')}</Text>
                             <Text style={styles.textDetail}>
-                                2H 30
+                                59Z1 - 01101
                             </Text>
                         </View>
                     </View>
@@ -125,7 +125,7 @@ export const DeliveryScreen: FC<StackScreenProps<AuthParamList, 'delivery'>> = (
                         <View style={styles.vertical_container}>
                             <Text style={styles.textInput}>{translate('delivery.date')}</Text>
                             <Text style={styles.textDetail}>
-                                2H 30
+                                1/12/2022
                             </Text>
                         </View>
                     </View>

@@ -10,6 +10,7 @@ import { BottomTab, BottomTabParamList } from './BottomTab';
 import { ProfileScreen } from '../screens/profile/profile';
 import { DeliveryScreen } from '../screens/delivery/delivery-info';
 import { CreateOrderScreen } from '../screens/order/create-order-screen';
+import { DriverSignUpScreen } from '../screens/signup/driver/driver-sign-up';
 
 const Stack = createNativeStackNavigator<AuthParamList>();
 
@@ -21,6 +22,7 @@ export type AuthParamList = {
   profile: undefined;
   delivery: undefined;
   createOrder: undefined;
+  driverSignUp: undefined;
 };
 
 export const AuthStack = () => {
@@ -37,6 +39,7 @@ export const AuthStack = () => {
       <Stack.Screen name='profile' component={ProfileScreen} />
       <Stack.Screen name='delivery' component={DeliveryScreen} />
       <Stack.Screen name='createOrder' component={CreateOrderScreen} />
+      <Stack.Screen name='driverSignUp' component={DriverSignUpScreen} />
     </Stack.Navigator>
   );
 };
