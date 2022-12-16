@@ -23,6 +23,7 @@ import {AppParamList} from '../../../navigation/AppStack';
 import HomeScreen from '../../home/home-screen';
 import {translate} from '../../../components/language';
 import {isFieldEmpty, isValidPhoneNumber} from '../../../utils/Utils';
+import {signInRequest} from '../../../network/Authenticate';
 
 type Props = NativeStackScreenProps<AppParamList, 'home'>;
 
@@ -43,6 +44,7 @@ export const DriverSignUpScreen: FC<
         translate('errors.invalidPhone'),
         translate('errors.re-input'),
       );
+      return false;
     }
     if (
       isFieldEmpty(name) ||
@@ -51,18 +53,18 @@ export const DriverSignUpScreen: FC<
       isFieldEmpty(licensePlate)
     ) {
       Alert.alert(translate('errors.fieldEmpty'), translate('errors.re-input'));
+      return false;
     }
     return true;
   }
 
-  const onSignUp = async (user: IAccount) => {
+  const onSignUp = () => {
     if (isFullField()) {
-      database.ref(`user/${user.userId}`).set({
-        username: user.username,
-        phone: user.phone,
-        birth: user.birth,
-      });
-      navigation.navigate('home');
+      signInRequest(phone)
+        .then(confirmation => {
+          navigation.navigate('verifycode'), {confirmation};
+        })
+        .catch(error => console.log(error));
     }
   };
 
@@ -254,7 +256,7 @@ export const DriverSignUpScreen: FC<
           </View>
           <View style={styles.button}>
             <TouchableOpacity
-              onPress={() => isFullField()}
+              onPress={() => onSignUp()}
               style={[
                 styles.signIn,
                 {
