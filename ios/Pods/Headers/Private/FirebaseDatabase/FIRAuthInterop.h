@@ -1,1 +1,1 @@
-../../../FirebaseDatabase/FirebaseAuth/Interop/FIRAuthInterop.h
+../../../FirebaseDatabase/Interop/Auth/Public/FIRAuthInterop.h

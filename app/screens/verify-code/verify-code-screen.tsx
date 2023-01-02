@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -10,84 +10,93 @@ import {
   View,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { COLORS } from '../../theme/colors';
-import { styles } from './styles';
+import {COLORS} from '../../theme/colors';
+import {styles} from './styles';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import { StackScreenProps } from '@react-navigation/stack';
+import {StackScreenProps} from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
-import { AuthParamList, AuthStack } from '../../navigation/AuthStack';
-import { database } from '../../service/firebase/database';
-import { hex } from '../../theme/hex';
-import { AccountContext } from '../../state/AccountContext';
-import { AccountContextType } from '../../state/@types/account';
-import { useCountDown } from '../../utils/hooks/useCountDown';
-import { firebase } from '@react-native-firebase/auth';
-import { createIconSetFromFontello } from 'react-native-vector-icons';
-import { translate } from '../../components/language';
+import {AuthParamList, AuthStack} from '../../navigation/AuthStack';
+import {database} from '../../service/firebase/database';
+import {AccountContext} from '../../state/AccountContext';
+import {AccountContextType} from '../../state/@types/account';
+import {useCountDown} from '../../utils/hooks/useCountDown';
+import {translate} from '../../components/language';
+import {DriverContext} from '../../state/DriverContext';
+import {DriverContextType} from '../../state/@types/driver';
+import {useStoreActions, useStoreState} from '../../state/store/store';
 
-export const VerifyCodeScreen: FC<StackScreenProps<AuthParamList>> = ({
-  route,
-  navigation,
-}) => {
-  const {
-    account,
-    updateUserId,
-    onAuthStateChange,
-    updateUsername,
-    updateBirth,
-    updatePhoneNumber,
-  } = useContext(AccountContext) as AccountContextType;
+export const VerifyCodeScreen: FC<
+  StackScreenProps<AuthParamList, 'verifycode'>
+> = ({route, navigation}) => {
+  const {account} = useContext(AccountContext) as AccountContextType;
+  // const setAccessToken = useStoreActions(
+  //   action => action.account.setAccessToken,
+  // );
+  const {setAccessToken} = useStoreActions(actions => actions.account);
+
+  const {accessToken} = useStoreState(state => state.account);
+  const {driver} = useContext(DriverContext) as DriverContextType;
   const [loading, setLoading] = useState<boolean>(false);
-  const confirmation = route.params;
-  const { startCountdown, countDown, completed } = useCountDown(60);
+  const {role, confirmation} = route.params;
+  const {startCountdown, countDown, completed} = useCountDown(60);
   const [code, setCode] = useState('');
 
   const onAuthUser = async (userId: string) => {
-    const snapshot = await database
-      .ref(`user/${userId}`)
-      .once('value')
-    return snapshot.val()
+    const snapshot = await database.ref(`${role}/${userId}`).once('value');
+    return snapshot.val();
   };
 
   function onConfirmCode() {
     setLoading(true);
-    confirmation?.confirmation
+    confirmation
       ?.confirm(code)
       .then(result => {
-        onAuthUser(result.user.uid).then((snapshot) => {
-          console.log(snapshot)
-          if (snapshot === null) {
-            setLoading(false);
-            Alert.alert(
-              translate('signup.newUser'),
-              translate('signup.createAccount'),
-              [
-                {
-                  text: translate('signup.title'),
-                  style: 'default',
-                  onPress: () => {
-                    updateUserId(result.user.uid);
-                    navigation.navigate('signup');
-                  },
-                },
-                {
-                  text: translate('common.cancel'),
-                  style: 'cancel',
-                  onPress: () => navigation.navigate('signin'),
-                },
-              ],
-            );
-          } else {
-            updateUserId(result.user.uid);
-            updateUsername(snapshot.username);
-            updatePhoneNumber(snapshot.phone);
-            updateBirth(snapshot.birth);
-            onAuthStateChange(!result?.additionalUserInfo?.isNewUser);
-            navigation.navigate('home');
-          }
-        }).catch(error => console.log(error))
+        console.log('Original ' + result?.user.uid);
+        setAccessToken(result?.user.uid);
+        console.log('EP ' + accessToken);
+        onAuthUser(result.user.uid);
       })
-      .catch(error => {
+      // .then(snapshot => {
+      //   if (snapshot === null) {
+      //     if (role == CUSTOMER) {
+      //       setLoading(false);
+      //       Alert.alert(
+      //         translate('signup.newUser'),
+      //         translate('signup.createAccount'),
+      //         [
+      //           {
+      //             text: translate('signup.title'),
+      //             style: 'default',
+      //             onPress: () => {
+      //               updateUserId(result.user.uid);
+      //               navigation.navigate('signup');
+      //             },
+      //           },
+      //           {
+      //             text: translate('common.cancel'),
+      //             style: 'cancel',
+      //             onPress: () => navigation.navigate('signin'),
+      //           },
+      //         ],
+      //       );
+      //     }
+      //     if (role == DRIVER) {
+      //       createDriverAccount(driver).then(() =>
+      //         navigation.navigate('driverHome'),
+      //       );
+      //     } else {
+      //       console.log(result);
+      //       updateUsername(snapshot.username);
+      //       updatePhoneNumber(snapshot.phone);
+      //       updateBirth(snapshot.birth);
+      //       onAuthStateChange(!result?.additionalUserInfo?.isNewUser);
+      //       navigation.navigate('home');
+      //     }
+      //   }
+      // })
+      // .catch(error => console.log(error));
+      // })
+      .catch(function () {
         setLoading(false);
         Alert.alert(
           translate('verification.IncorrectVerification'),

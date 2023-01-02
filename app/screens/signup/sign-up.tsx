@@ -16,13 +16,12 @@ import {AuthParamList} from '../../navigation/AuthStack';
 import {styles} from './styles';
 import {AccountContext} from '../../state/AccountContext';
 import {AccountContextType, IAccount} from '../../state/@types/account';
-import {database} from '../../service/firebase/database';
-import {AppStackList} from '../../navigation/BottomTab';
-import HomeScreen from '../home/home-screen';
+import {BottomTabParamList} from '../../navigation/BottomTab';
 import {StackScreenProps} from '@react-navigation/stack';
 import {translate} from '../../components/language';
+import {createCutomerAccount} from '../../network/FirebaseApis';
 
-type Props = NativeStackScreenProps<AppStackList, 'home'>;
+type Props = NativeStackScreenProps<BottomTabParamList, 'home'>;
 
 export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
   navigation,
@@ -44,29 +43,14 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     updateBirth(val);
   };
 
-  const handlePasswordChange = (val: string) => {
-    setPassword(val);
-  };
-
-  const handleConfirmPasswordChange = (val: string) => {
-    setConfirmPassword(val);
-  };
-
   const isPasswordMatch = (): boolean => {
     return password === confirmPassword;
   };
 
-  function setPasswordVisiblity() {
-    !visible ? setVisible(true) : setVisible(false);
-  }
-
-  const onSignUp = async (user: IAccount) => {
-    database.ref(`user/${user.userId}`).set({
-      username: user.username,
-      phone: user.phone,
-      birth: user.birth,
-    });
-    navigation.navigate('home');
+  const onSignUp = (user: IAccount) => {
+    createCutomerAccount(user)
+      .then(() => navigation.navigate('home'))
+      .catch(error => console.log(error));
   };
   return (
     <View style={styles.container}>
@@ -234,4 +218,3 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
     </View>
   );
 };
-

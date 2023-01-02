@@ -1,1 +1,1 @@
-../../../FirebaseDatabase/FirebaseCore/Extension/FIRHeartbeatInfo.h
+../../../FirebaseDatabase/FirebaseCore/Sources/Private/FIRHeartbeatInfo.h

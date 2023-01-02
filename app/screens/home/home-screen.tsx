@@ -12,30 +12,29 @@ import {
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import { COLORS } from '../../theme/colors';
-import { styles } from './styles';
-import { StackScreenProps } from '@react-navigation/stack';
-import { BottomTabParamList } from '../../navigation/BottomTab';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { AccountContext } from '../../state/AccountContext';
-import { AccountContextType } from '../../state/@types/account';
-import { profile } from '../../assets/profile/profile';
-import { AuthParamList } from '../../navigation/AuthStack';
-import { translate, useTranslation } from '../../components/language';
+import {COLORS} from '../../theme/colors';
+import {styles} from './styles';
+import {StackScreenProps} from '@react-navigation/stack';
+import {BottomTabParamList} from '../../navigation/BottomTab';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {AccountContext} from '../../state/AccountContext';
+import {AccountContextType} from '../../state/@types/account';
+import {profile} from '../../assets/profile/profile';
+import {AuthParamList} from '../../navigation/AuthStack';
+import {translate, useTranslation} from '../../components/language';
 import SearchBar from '../../components/SearchBar';
-import { DeliverySumaryInfo } from '../../components/delivery/delivery-sumary-info';
+import {DeliverySumaryInfo} from '../../components/delivery/delivery-sumary-info';
 
 const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
   navigation,
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
-  const { account } = React.useContext(AccountContext) as AccountContextType;
-  const { locale } = useTranslation();
+  const {locale} = useTranslation();
 
   const onDetailDeliveryPress = () => {
-    navigation.navigate('delivery')
-  }
+    navigation.navigate('delivery');
+  };
 
   const deliveryInfo = [
     {

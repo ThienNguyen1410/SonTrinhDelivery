@@ -96,6 +96,7 @@
     "loginScreen": {
       "title": "Đăng nhập",
       "phone" : "Số điện thoại",
+      "driverSignUp":"Đăng kí làm tài xế",
       "placeHolder" : "Vui lòng nhập số điện thoại"
     },
     "createPasscode": {

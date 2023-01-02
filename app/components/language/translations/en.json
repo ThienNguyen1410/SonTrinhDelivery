@@ -94,7 +94,9 @@
     "loginScreen": {
       "title": "Login with phone number",
       "phone" : "Phone number",
+      "driverSignUp":"Sign up driver account",
       "placeHolder" : "Please input your phone number"
+
     },
 
     "verification": {

@@ -1,7 +1,9 @@
 import React, {createContext, useContext, useState} from 'react';
 import {AccountContextType, IAccount} from './@types/account';
 
-export const AccountContext = createContext<AccountContextType | null>(null);
+export const AccountContext = createContext<AccountContextType | undefined>(
+  undefined,
+);
 
 export const AccountProvider: React.FC<React.ReactNode> = ({children}) => {
   const [account, setAccount] = useState<IAccount>({
@@ -9,7 +11,7 @@ export const AccountProvider: React.FC<React.ReactNode> = ({children}) => {
     userId: '',
     birth: '',
     phone: '',
-    isAuth: false,
+    avatarUrl: '',
   });
 
   const updatePhoneNumber = (phone: string) => {
@@ -30,10 +32,6 @@ export const AccountProvider: React.FC<React.ReactNode> = ({children}) => {
     account.userId = userId;
     setAccount(account);
   };
-  const onAuthStateChange = (authState: boolean) => {
-    account.isAuth = authState;
-    setAccount(account);
-  };
 
   return (
     <AccountContext.Provider
@@ -43,7 +41,6 @@ export const AccountProvider: React.FC<React.ReactNode> = ({children}) => {
         updateUsername,
         updateBirth,
         updateUserId,
-        onAuthStateChange,
       }}>
       {children}
     </AccountContext.Provider>

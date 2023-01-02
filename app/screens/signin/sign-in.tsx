@@ -23,14 +23,16 @@ import {AccountContext} from '../../state/AccountContext';
 import {AccountContextType} from '../../state/@types/account';
 import {translate, useTranslation} from '../../components/language';
 import {isValidPhoneNumber} from '../../utils/Utils';
+import {useStoreActions} from '../../state/store/store';
 
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
-  const {updatePhoneNumber} = useContext(AccountContext) as AccountContextType;
+
   const [phoneNumber, setPhoneNumber] = React.useState<string>('');
+  const {setAuth} = useStoreActions(action => action.account);
 
   const onPhoneNumberChange = (val: string) => {
     setPhoneNumber(val);
@@ -41,19 +43,13 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   }
 
   function onSignInWithPhoneNumber() {
+    var role = 'customer';
     auth()
       .signInWithPhoneNumber('+84' + phoneNumber)
       .then(confirmation => {
-        updatePhoneNumber(phoneNumber);
-        navigation.navigate('verifycode', {confirmation});
+        navigation.navigate('verifycode', {role, confirmation});
       })
       .catch(error => {
-        // Alert.alert('Số điện thoại không đúng', 'Vui lòng thử lại', [
-        //   {
-        //     text: 'Đồng ý',
-        //     style: 'cancel',
-        //   },
-        // ]);
         Alert.alert(error.toString());
       });
   }
@@ -113,17 +109,19 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
           <TouchableOpacity
             style={styles.driverContainer}
             onPress={() => onDriverSignUp()}>
-            <Text style={styles.driverText}>Đăng kí làm tài xế</Text>
+            <Text style={styles.driverText}>
+              {translate('loginScreen.driverSignUp')}
+            </Text>
           </TouchableOpacity>
         </ScrollView>
         <View style={styles.button}>
           <TouchableOpacity
             onPress={() => onSignInWithPhoneNumber()}
-            disabled={!isValidPhoneNumber()}
+            disabled={!isValidPhoneNumber(phoneNumber)}
             style={[
               styles.signIn,
               {
-                borderColor: isValidPhoneNumber()
+                borderColor: isValidPhoneNumber(phoneNumber)
                   ? COLORS.primary
                   : COLORS.gray,
                 borderWidth: 1,
@@ -134,7 +132,9 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
               style={[
                 styles.textSign,
                 {
-                  color: isValidPhoneNumber() ? COLORS.primary : COLORS.gray,
+                  color: isValidPhoneNumber(phoneNumber)
+                    ? COLORS.primary
+                    : COLORS.gray,
                 },
               ]}>
               {translate('loginScreen.title')}

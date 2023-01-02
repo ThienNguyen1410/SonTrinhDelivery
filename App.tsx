@@ -1,38 +1,36 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {AuthStack} from './app/navigation/AuthStack';
-import {BottomTab} from './app/navigation/BottomTab';
-import {AccountContext, AccountProvider} from './app/state/AccountContext';
-import {AccountContextType} from './app/state/@types/account';
+import {AccountProvider} from './app/state/AccountContext';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {AppStack} from './app/navigation/AppStack';
 import {LocaleContextProvider} from './app/components/language/LocaleContext';
-import {LogBox} from 'react-native';
-import {DriverContext, DriverContextProvider} from './app/state/DriverContext';
+import {LogBox, ViewStyle} from 'react-native';
+import {DriverContextProvider} from './app/state/DriverContext';
+import {StoreProvider} from 'easy-peasy';
+import {store} from './app/state/store/store';
+import {AppStack} from './app/navigation/AppStack';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {AppNavigator} from './app/navigation/AppNavigator';
 
 const App = () => {
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   LogBox.ignoreAllLogs();
+  Feather.loadFont().then;
+  MaterialCommunityIcons.loadFont().then;
+  const ROOT: ViewStyle = {
+    flex: 1,
+  };
 
-  useEffect(() => {
-    auth().onAuthStateChanged(userState => {
-      setUser(userState);
-    });
-  }, []);
   return (
-    <NavigationContainer>
-      <LocaleContextProvider>
-        <DriverContextProvider>
-          <AccountProvider>
-            {/* {!user ?
-          (<AuthStack />) : (<AppStack />)
-        } */}
-            <AuthStack />
-          </AccountProvider>
-        </DriverContextProvider>
-      </LocaleContextProvider>
-    </NavigationContainer>
+    <GestureHandlerRootView style={ROOT}>
+      <StoreProvider store={store}>
+        <LocaleContextProvider>
+          <AppNavigator />
+        </LocaleContextProvider>
+      </StoreProvider>
+    </GestureHandlerRootView>
   );
 };
 

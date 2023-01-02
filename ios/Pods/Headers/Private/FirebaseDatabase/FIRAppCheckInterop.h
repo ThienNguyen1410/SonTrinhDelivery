@@ -1,1 +1,1 @@
-../../../FirebaseDatabase/FirebaseAppCheck/Interop/FIRAppCheckInterop.h
+../../../FirebaseDatabase/FirebaseAppCheck/Sources/Interop/FIRAppCheckInterop.h

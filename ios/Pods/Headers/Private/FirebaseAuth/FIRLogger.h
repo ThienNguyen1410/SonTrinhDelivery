@@ -1,1 +1,1 @@
-../../../FirebaseAuth/FirebaseCore/Extension/FIRLogger.h
+../../../FirebaseAuth/FirebaseCore/Sources/Private/FIRLogger.h

@@ -1,1 +1,1 @@
-../../../FirebaseAuth/FirebaseCore/Extension/FIRCoreDiagnosticsConnector.h
+../../../FirebaseAuth/FirebaseCore/Sources/Private/FIRCoreDiagnosticsConnector.h
