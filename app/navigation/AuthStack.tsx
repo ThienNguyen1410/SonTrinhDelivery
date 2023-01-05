@@ -11,7 +11,6 @@ export type AuthParamList = {
   signup: undefined;
   signin: undefined;
   verifycode: {
-    role: string;
     confirmation?: FirebaseAuthTypes.ConfirmationResult;
   };
 };

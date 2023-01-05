@@ -1,8 +1,8 @@
 import {action, thunk} from 'easy-peasy';
-import {AccountModel} from '../@types/account';
+import {CustomerModel} from '../../@types/account';
 
-const accountStore: AccountModel = {
-  account: {
+const CustomerStore: CustomerModel = {
+  customer: {
     username: '',
     userId: '',
     birth: '',
@@ -10,31 +10,27 @@ const accountStore: AccountModel = {
     avatarUrl: '',
   },
   setUsername: action((state, username) => {
-    state.account.username = username;
+    state.customer.username = username;
   }),
 
   setUserId: action((state, userId) => {
-    state.account.userId = userId;
+    state.customer.userId = userId;
   }),
 
   setBirth: action((state, birth) => {
-    state.account.birth = birth;
+    state.customer.birth = birth;
   }),
 
   setPhone: action((state, phone) => {
-    state.account.phone = phone;
+    state.customer.phone = phone;
   }),
 
   setAvartarUrl: action((state, url) => {
-    state.account.avatarUrl = url;
+    state.customer.avatarUrl = url;
   }),
 
   setRole: action((state, role) => {
     state.role = role;
-  }),
-
-  setAccount: action((state, account) => {
-    state.account = account;
   }),
 
   accessToken: undefined,
@@ -48,4 +44,4 @@ const accountStore: AccountModel = {
   }),
 };
 
-export default accountStore;
+export default CustomerStore;

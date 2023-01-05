@@ -24,6 +24,7 @@ import {AccountContextType} from '../../state/@types/account';
 import {translate, useTranslation} from '../../components/language';
 import {isValidPhoneNumber} from '../../utils/Utils';
 import {useStoreActions} from '../../state/store/store';
+import {CUSTOMER} from '../../constant/Account';
 
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,
@@ -31,11 +32,12 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
 
+  const {setPhone} = useStoreActions(action => action.account);
   const [phoneNumber, setPhoneNumber] = React.useState<string>('');
-  const {setAuth} = useStoreActions(action => action.account);
 
   const onPhoneNumberChange = (val: string) => {
     setPhoneNumber(val);
+    setPhone(val);
   };
 
   function onDriverSignUp() {
@@ -43,11 +45,10 @@ const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   }
 
   function onSignInWithPhoneNumber() {
-    var role = 'customer';
     auth()
       .signInWithPhoneNumber('+84' + phoneNumber)
       .then(confirmation => {
-        navigation.navigate('verifycode', {role, confirmation});
+        navigation.navigate('verifycode', {confirmation});
       })
       .catch(error => {
         Alert.alert(error.toString());

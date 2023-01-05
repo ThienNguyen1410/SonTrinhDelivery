@@ -17,7 +17,7 @@ export type AppParamList = {
 
 export const AppStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="home" component={BottomTab} />
       <Stack.Screen name="profile" component={ProfileScreen} />
       <Stack.Screen name="delivery" component={DeliveryScreen} />

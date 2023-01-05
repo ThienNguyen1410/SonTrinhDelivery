@@ -28,21 +28,21 @@ import {useStoreActions, useStoreState} from '../../state/store/store';
 export const VerifyCodeScreen: FC<
   StackScreenProps<AuthParamList, 'verifycode'>
 > = ({route, navigation}) => {
-  const {account} = useContext(AccountContext) as AccountContextType;
   // const setAccessToken = useStoreActions(
   //   action => action.account.setAccessToken,
   // );
-  const {setAccessToken} = useStoreActions(actions => actions.account);
-
-  const {accessToken} = useStoreState(state => state.account);
-  const {driver} = useContext(DriverContext) as DriverContextType;
+  const {setAccessToken, setAuth, setUsername, setBirth} = useStoreActions(
+    actions => actions.account,
+  );
+  const {setPhone, setUserId} = useStoreActions(action => action.customer);
+  const {accessToken, account} = useStoreState(state => state.account);
   const [loading, setLoading] = useState<boolean>(false);
-  const {role, confirmation} = route.params;
+  const {confirmation} = route.params;
   const {startCountdown, countDown, completed} = useCountDown(60);
   const [code, setCode] = useState('');
 
-  const onAuthUser = async (userId: string) => {
-    const snapshot = await database.ref(`${role}/${userId}`).once('value');
+  const onAuthUser = async (userId: string | undefined) => {
+    const snapshot = await database.ref(`${userId}`).once('value');
     return snapshot.val();
   };
 
@@ -51,51 +51,40 @@ export const VerifyCodeScreen: FC<
     confirmation
       ?.confirm(code)
       .then(result => {
-        console.log('Original ' + result?.user.uid);
-        setAccessToken(result?.user.uid);
-        console.log('EP ' + accessToken);
-        onAuthUser(result.user.uid);
+        onAuthUser(result?.user.uid)
+          .then(snapshot => {
+            if (snapshot === null) {
+              setLoading(false);
+              Alert.alert(
+                translate('signup.newUser'),
+                translate('signup.createAccount'),
+                [
+                  {
+                    text: translate('signup.title'),
+                    style: 'default',
+                    onPress: () => {
+                      if (result != undefined) {
+                        setUserId(result.user.uid);
+                        setPhone(account.phone);
+                        navigation.navigate('signup');
+                      }
+                    },
+                  },
+                  {
+                    text: translate('common.cancel'),
+                    style: 'cancel',
+                    onPress: () => navigation.navigate('signin'),
+                  },
+                ],
+              );
+            } else {
+              setUsername(snapshot.username);
+              setBirth(snapshot.birth);
+              setAuth(true);
+            }
+          })
+          .catch(error => console.log(error));
       })
-      // .then(snapshot => {
-      //   if (snapshot === null) {
-      //     if (role == CUSTOMER) {
-      //       setLoading(false);
-      //       Alert.alert(
-      //         translate('signup.newUser'),
-      //         translate('signup.createAccount'),
-      //         [
-      //           {
-      //             text: translate('signup.title'),
-      //             style: 'default',
-      //             onPress: () => {
-      //               updateUserId(result.user.uid);
-      //               navigation.navigate('signup');
-      //             },
-      //           },
-      //           {
-      //             text: translate('common.cancel'),
-      //             style: 'cancel',
-      //             onPress: () => navigation.navigate('signin'),
-      //           },
-      //         ],
-      //       );
-      //     }
-      //     if (role == DRIVER) {
-      //       createDriverAccount(driver).then(() =>
-      //         navigation.navigate('driverHome'),
-      //       );
-      //     } else {
-      //       console.log(result);
-      //       updateUsername(snapshot.username);
-      //       updatePhoneNumber(snapshot.phone);
-      //       updateBirth(snapshot.birth);
-      //       onAuthStateChange(!result?.additionalUserInfo?.isNewUser);
-      //       navigation.navigate('home');
-      //     }
-      //   }
-      // })
-      // .catch(error => console.log(error));
-      // })
       .catch(function () {
         setLoading(false);
         Alert.alert(

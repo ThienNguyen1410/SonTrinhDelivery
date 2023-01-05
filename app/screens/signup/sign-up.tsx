@@ -11,45 +11,32 @@ import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import {COLORS} from '../../theme/colors';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthParamList} from '../../navigation/AuthStack';
 import {styles} from './styles';
-import {AccountContext} from '../../state/AccountContext';
-import {AccountContextType, IAccount} from '../../state/@types/account';
-import {BottomTabParamList} from '../../navigation/BottomTab';
 import {StackScreenProps} from '@react-navigation/stack';
 import {translate} from '../../components/language';
-import {createCutomerAccount} from '../../network/FirebaseApis';
+import {createCustomerAccount} from '../../network/FirebaseApis';
+import {IAccount} from '../../state/@types/account';
+import {useStoreActions, useStoreState} from '../../state/store/store';
+import {CUSTOMER} from '../../constant/Account';
 
-type Props = NativeStackScreenProps<BottomTabParamList, 'home'>;
-
-export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
-  navigation,
-}) => {
+export const SignUpScreen: FC<
+  StackScreenProps<AuthParamList, 'signup'>
+> = () => {
   Feather.loadFont().then;
   MaterialCommunityIcons.loadFont().then;
-  const {account, updateUsername, updateBirth} = useContext(
-    AccountContext,
-  ) as AccountContextType;
-  const [password, setPassword] = React.useState('');
-  const [visible, setVisible] = useState<boolean>(true);
-  const [confirmPassword, setConfirmPassword] = React.useState('');
 
-  const handleUsernameChange = (val: string) => {
-    updateUsername(val);
-  };
-
-  const handleBirthChange = (val: string) => {
-    updateBirth(val);
-  };
-
-  const isPasswordMatch = (): boolean => {
-    return password === confirmPassword;
-  };
+  const {account} = useStoreState(state => state.account);
+  const {customer} = useStoreState(state => state.customer);
+  const {setUsername, setBirth, setRole} = useStoreActions(
+    action => action.customer,
+  );
 
   const onSignUp = (user: IAccount) => {
-    createCutomerAccount(user)
-      .then(() => navigation.navigate('home'))
+    createCustomerAccount(user)
+      .then(() => {
+        setRole(CUSTOMER);
+      })
       .catch(error => console.log(error));
   };
   return (
@@ -95,7 +82,7 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
               size={20}
             />
             <TextInput
-              onChangeText={val => handleUsernameChange(val)}
+              onChangeText={val => setUsername(val)}
               placeholder={translate('placeholder.name')}
               style={styles.textInput}
               autoCapitalize="none"
@@ -117,100 +104,24 @@ export const SignUpScreen: FC<StackScreenProps<AuthParamList, 'home'>> = ({
               size={20}
             />
             <TextInput
-              onChangeText={val => handleBirthChange(val)}
+              onChangeText={val => setBirth(val)}
               placeholder={translate('placeholder.birth')}
               style={styles.textInput}
               autoCapitalize="none"
             />
           </View>
-          {/* <Text
-                        style={[
-                            styles.text_footer,
-                            {
-                                marginTop: 35,
-                            },
-                        ]}>
-                        Mật Khẩu
-                    </Text>
-                    <View style={styles.action}>
-                        <MaterialCommunityIcons
-                            name="cellphone-lock"
-                            color={COLORS.primary}
-                            size={20}
-                        />
-                        <TextInput
-                            placeholder="Mật khẩu của bạn"
-                            secureTextEntry={visible}
-                            style={styles.textInput}
-                            autoCapitalize="none"
-                            onChangeText={val => handlePasswordChange(val)}
-                        />
-                        <TouchableOpacity onPress={() => setPasswordVisiblity()}>
-                            {visible ? (
-                                <MaterialCommunityIcons name="eye-off" color="grey" size={20} />
-                            ) : (
-                                <MaterialCommunityIcons name="eye" color="grey" size={20} />
-                            )}
-                        </TouchableOpacity>
-                    </View>
-
-                    <Text
-                        style={[
-                            styles.text_footer,
-                            {
-                                marginTop: 35,
-                            },
-                        ]}>
-                        Xác nhận mật khẩu
-                    </Text>
-                    <View style={styles.action}>
-                        <MaterialCommunityIcons
-                            name="cellphone-lock"
-                            color={COLORS.primary}
-                            size={20}
-                        />
-                        <TextInput
-                            placeholder="Mật khẩu của bạn"
-                            secureTextEntry={visible}
-                            style={styles.textInput}
-                            autoCapitalize="none"
-                            onChangeText={val => handleConfirmPasswordChange(val)}
-                        />
-                        {isPasswordMatch() ? (
-                            <Animatable.View animation="bounceIn">
-                                <Feather
-                                    name="check-circle"
-                                    color={COLORS.validIcon}
-                                    size={20}
-                                />
-                            </Animatable.View>
-                        ) : (
-                            <Animatable.View animation="bounceIn">
-                                <Feather name="x-circle" color={COLORS.error} size={20} />
-                            </Animatable.View>
-                        )}
-                    </View> */}
           <View style={styles.button}>
             <TouchableOpacity
-              onPress={() => onSignUp(account)}
+              onPress={() => onSignUp(customer)}
               // disabled={isPasswordMatch()}
               style={[
                 styles.signIn,
                 {
-                  borderColor: isPasswordMatch() ? COLORS.primary : COLORS.gray,
                   borderWidth: 1,
                   marginTop: 15,
                 },
               ]}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: isPasswordMatch() ? COLORS.primary : COLORS.gray,
-                  },
-                ]}>
-                {translate('common.ok')}
-              </Text>
+              <Text style={styles.textSign}>{translate('common.ok')}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

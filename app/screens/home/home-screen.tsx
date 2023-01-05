@@ -15,22 +15,19 @@ import Feather from 'react-native-vector-icons/Feather';
 import {COLORS} from '../../theme/colors';
 import {styles} from './styles';
 import {StackScreenProps} from '@react-navigation/stack';
-import {BottomTabParamList} from '../../navigation/BottomTab';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {AccountContext} from '../../state/AccountContext';
-import {AccountContextType} from '../../state/@types/account';
-import {profile} from '../../assets/profile/profile';
-import {AuthParamList} from '../../navigation/AuthStack';
 import {translate, useTranslation} from '../../components/language';
 import SearchBar from '../../components/SearchBar';
 import {DeliverySumaryInfo} from '../../components/delivery/delivery-sumary-info';
+import {useStoreState} from '../../state/store/store';
+import {AppParamList} from '../../navigation/AppStack';
 
-const HomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
+const HomeScreen: React.FC<StackScreenProps<AppParamList, 'home'>> = ({
   navigation,
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
   const {locale} = useTranslation();
+  const {account} = useStoreState(state => state.account);
 
   const onDetailDeliveryPress = () => {
     navigation.navigate('delivery');

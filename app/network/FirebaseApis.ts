@@ -1,19 +1,20 @@
 import {database} from '../service/firebase/database';
 import {IAccount} from '../state/@types/account';
-import {IDriver} from '../state/@types/driver';
 
-export async function createCutomerAccount(customer: IAccount) {
-  database.ref(`customer/${customer.userId}`).set({
+export async function createCustomerAccount(customer: IAccount) {
+  database.ref(`${customer.userId}`).set({
     username: customer.username,
     phone: customer.phone,
     birth: customer.birth,
+    role: 'customer',
   });
 }
 
-export async function createDriverAccount(driver: IDriver) {
-  database.ref(`driver/${driver.id}`).set({
-    username: driver.name,
+export async function createDriverAccount(driver: IAccount) {
+  database.ref(`${driver.userId}`).set({
+    username: driver.username,
     phone: driver.phone,
     birth: driver.birth,
+    role: 'driver',
   });
 }
