@@ -27,7 +27,7 @@ const HomeScreen: React.FC<StackScreenProps<AppParamList, 'home'>> = ({
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
   const {locale} = useTranslation();
-  const {account} = useStoreState(state => state.account);
+  const {customer} = useStoreState(state => state.customer);
 
   const onDetailDeliveryPress = () => {
     navigation.navigate('delivery');
@@ -59,7 +59,7 @@ const HomeScreen: React.FC<StackScreenProps<AppParamList, 'home'>> = ({
       <View style={styles.header_container}>
         <View style={styles.header}>
           <Text style={styles.text_header}>
-            {translate('HomeScreen.greeting')} : {account.username}{' '}
+            {translate('HomeScreen.greeting')} : {customer.username}{' '}
           </Text>
           <Text style={styles.text_footer}>
             {translate('HomeScreen.slogan')}

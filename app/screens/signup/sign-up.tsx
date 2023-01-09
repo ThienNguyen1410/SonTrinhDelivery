@@ -1,4 +1,4 @@
-import React, {FC, useContext, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   StatusBar,
+  Alert,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,6 +20,7 @@ import {createCustomerAccount} from '../../network/FirebaseApis';
 import {IAccount} from '../../state/@types/account';
 import {useStoreActions, useStoreState} from '../../state/store/store';
 import {CUSTOMER} from '../../constant/Account';
+import {isFieldEmpty} from '../../utils/Utils';
 
 export const SignUpScreen: FC<
   StackScreenProps<AuthParamList, 'signup'>
@@ -28,17 +30,35 @@ export const SignUpScreen: FC<
 
   const {account} = useStoreState(state => state.account);
   const {customer} = useStoreState(state => state.customer);
-  const {setUsername, setBirth, setRole} = useStoreActions(
+  const {setLoading} = useStoreActions(action => action.app);
+  const {setAuth, setRole} = useStoreActions(action => action.account);
+  const {setPhone, setUsername, setBirth} = useStoreActions(
     action => action.customer,
   );
 
-  const onSignUp = (user: IAccount) => {
-    createCustomerAccount(user)
-      .then(() => {
-        setRole(CUSTOMER);
-      })
-      .catch(error => console.log(error));
-  };
+  function isEmptyFields(): boolean {
+    if (isFieldEmpty(customer.birth) || isFieldEmpty(customer.username)) {
+      setLoading(false);
+      Alert.alert(translate('errors.fieldEmpty'), translate('errors.re-input'));
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function onSignUp(customer: IAccount) {
+    setLoading(true);
+    if (isEmptyFields()) {
+      createCustomerAccount(customer)
+        .then(() => {
+          setRole(CUSTOMER);
+          setAuth(true);
+          setLoading(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
@@ -113,10 +133,10 @@ export const SignUpScreen: FC<
           <View style={styles.button}>
             <TouchableOpacity
               onPress={() => onSignUp(customer)}
-              // disabled={isPasswordMatch()}
               style={[
                 styles.signIn,
                 {
+                  borderColor: COLORS.primary,
                   borderWidth: 1,
                   marginTop: 15,
                 },

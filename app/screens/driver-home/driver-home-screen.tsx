@@ -13,13 +13,13 @@ import SearchBar from '../../components/SearchBar';
 import {DeliverySumaryInfo} from '../../components/delivery/delivery-sumary-info';
 import {DriverContext} from '../../state/DriverContext';
 import {DriverContextType} from '../../state/@types/driver';
+import {DriverParamList} from '../../navigation/DriverStack';
 
-const DriverHomeScreen: React.FC<StackScreenProps<AuthParamList, 'home'>> = ({
+const DriverHomeScreen: React.FC<StackScreenProps<DriverParamList, 'home'>> = ({
   navigation,
 }) => {
   MaterialCommunityIcons.loadFont();
   Feather.loadFont();
-  const {driver} = React.useContext(DriverContext) as DriverContextType;
   const {locale} = useTranslation();
 
   const onDetailDeliveryPress = () => {

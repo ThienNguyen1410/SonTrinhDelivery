@@ -2,6 +2,7 @@ import {database} from '../service/firebase/database';
 import {IAccount} from '../state/@types/account';
 
 export async function createCustomerAccount(customer: IAccount) {
+  console.log(customer);
   database.ref(`${customer.userId}`).set({
     username: customer.username,
     phone: customer.phone,

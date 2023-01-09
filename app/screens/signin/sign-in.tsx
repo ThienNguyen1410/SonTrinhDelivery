@@ -4,12 +4,9 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
-  StyleSheet,
   StatusBar,
   Alert,
   ScrollView,
-  ColorPropType,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,12 +16,9 @@ import {styles} from './styles';
 import auth from '@react-native-firebase/auth';
 import {StackScreenProps} from '@react-navigation/stack';
 import {AuthParamList} from '../../navigation/AuthStack';
-import {AccountContext} from '../../state/AccountContext';
-import {AccountContextType} from '../../state/@types/account';
 import {translate, useTranslation} from '../../components/language';
 import {isValidPhoneNumber} from '../../utils/Utils';
 import {useStoreActions} from '../../state/store/store';
-import {CUSTOMER} from '../../constant/Account';
 
 const SignInScreen: FC<StackScreenProps<AuthParamList, 'signin'>> = ({
   navigation,

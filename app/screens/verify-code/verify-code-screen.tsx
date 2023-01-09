@@ -1,11 +1,8 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
 import {
-  ActivityIndicator,
   Alert,
-  Button,
   KeyboardAvoidingView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -17,12 +14,8 @@ import {StackScreenProps} from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
 import {AuthParamList, AuthStack} from '../../navigation/AuthStack';
 import {database} from '../../service/firebase/database';
-import {AccountContext} from '../../state/AccountContext';
-import {AccountContextType} from '../../state/@types/account';
 import {useCountDown} from '../../utils/hooks/useCountDown';
 import {translate} from '../../components/language';
-import {DriverContext} from '../../state/DriverContext';
-import {DriverContextType} from '../../state/@types/driver';
 import {useStoreActions, useStoreState} from '../../state/store/store';
 
 export const VerifyCodeScreen: FC<
@@ -35,8 +28,8 @@ export const VerifyCodeScreen: FC<
     actions => actions.account,
   );
   const {setPhone, setUserId} = useStoreActions(action => action.customer);
+  const {setLoading} = useStoreActions(action => action.app);
   const {accessToken, account} = useStoreState(state => state.account);
-  const [loading, setLoading] = useState<boolean>(false);
   const {confirmation} = route.params;
   const {startCountdown, countDown, completed} = useCountDown(60);
   const [code, setCode] = useState('');
@@ -65,7 +58,6 @@ export const VerifyCodeScreen: FC<
                     onPress: () => {
                       if (result != undefined) {
                         setUserId(result.user.uid);
-                        setPhone(account.phone);
                         navigation.navigate('signup');
                       }
                     },
@@ -81,6 +73,7 @@ export const VerifyCodeScreen: FC<
               setUsername(snapshot.username);
               setBirth(snapshot.birth);
               setAuth(true);
+              setLoading(false);
             }
           })
           .catch(error => console.log(error));
@@ -129,9 +122,6 @@ export const VerifyCodeScreen: FC<
             backgroundColor: COLORS.background,
           },
         ]}>
-        {loading ? (
-          <ActivityIndicator size="large" color={COLORS.indicator} />
-        ) : null}
         <Text
           style={[
             styles.text_footer,

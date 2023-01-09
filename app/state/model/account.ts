@@ -29,6 +29,7 @@ const accountStore: AccountModel = {
     state.account.avatarUrl = url;
   }),
 
+  role: undefined,
   setRole: action((state, role) => {
     state.role = role;
   }),

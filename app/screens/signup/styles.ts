@@ -68,5 +68,6 @@ export const styles = StyleSheet.create({
   textSign: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: COLORS.primary,
   },
 });
