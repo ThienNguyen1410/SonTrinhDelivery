@@ -6,6 +6,7 @@
 #import <React/RCTRootView.h>
 
 #import <React/RCTAppSetupUtils.h>
+#import <React/RCTLinkingManager.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -22,6 +23,13 @@
   RCTSurfacePresenterBridgeAdapter *_bridgeAdapter;
   std::shared_ptr<const facebook::react::ReactNativeConfig> _reactNativeConfig;
   facebook::react::ContextContainer::Shared _contextContainer;
+}
+// deeplink
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+return [RCTLinkingManager application:application openURL:url
+sourceApplication:sourceApplication annotation:annotation];
 }
 @end
 #endif
@@ -68,7 +76,7 @@
 #endif
 }
 
-#if RCT_NEW_ARCH_ENABLED
+#if RCT_NEWçç_ARCH_ENABLED
 
 #pragma mark - RCTCxxBridgeDelegate
 

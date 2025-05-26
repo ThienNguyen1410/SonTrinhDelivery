@@ -1,4 +1,3 @@
-import {Icon} from 'react-native-vector-icons/Icon';
 import {hex} from './hex';
 
 export const COLORS = {
@@ -6,7 +5,7 @@ export const COLORS = {
 
   primary: hex.Red60,
 
-  secondary: hex.orange,
+  orange: hex.orange,
 
   icon: hex.black,
 
@@ -27,4 +26,12 @@ export const COLORS = {
   black: hex.black,
 
   gray: hex.IGray30,
+
+  offwhite: hex.offWhite,
+
+  transparent: hex.transparent,
+
+  momo: hex.momo,
+
+  bank: hex.bank,
 };

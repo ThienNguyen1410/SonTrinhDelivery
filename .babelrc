@@ -1,0 +1,29 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "sourceMaps": true,
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./app"],
+        "alias": {
+          "@navigation": "./app/navigation",
+          "@network" : "./app/network",
+          "@component": "./app/UI/components",
+          "@constant" : "./app/constant",
+          "@screens" : "./app/UI/screens",
+          "@UI" : "./app/UI",
+          "@util": "./app/utils",
+          "@repository" : "./app/data/repository",
+          "@domain" : "./app/domain",
+          "@service" : "./app/service",
+          "@state" : "./app/state",
+          "@theme": "./app/theme",
+          "@colors": "./app/theme/colors.ts",
+          "@icons": "./app/UI/components/icons",
+          "@store": "./app/state/store"
+        }
+      }
+    ]
+  ]
+}

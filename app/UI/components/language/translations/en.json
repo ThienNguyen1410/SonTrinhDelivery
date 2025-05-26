@@ -1,0 +1,230 @@
+{
+  "app": {
+    "name": "Sơn Trình Logistics"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "back": "Back",
+    "continue": "Continue",
+    "confirm": "Confirm",
+    "copy": "Copy",
+    "enterPasscode": "Enter your passcode",
+    "enterVerifyCode": "Enter verification code",
+    "next": "Next",
+    "check": "Re-Check",
+    "done": "Done",
+    "approve": "Approve",
+    "approved": "Approved",
+    "pickup": "Waiting for pickup",
+    "delivering": "In transit",
+    "completed": "Delivery successful",
+    "reject": "Cancel",
+    "verifycode": "Send verification code",
+    "sendVerifycationCode": "Sent verification code to phone number ",
+    "history": "History",
+    "setting": "Settings",
+    "save": "Save",
+    "welcome": "Welcome",
+    "re_check": "Please check again"
+  },
+
+  "errors": {
+    "invalidPhone": "Invalid Phone Number",
+    "networkUnstable": "Network unstable",
+    "fieldEmpty": "Missing field",
+    "re-input": "Please input correct field",
+    "networkUnAvailable": "Network unvailable",
+    "cancelVerification": "Cancel verification",
+    "accountExisted": "This account has pre-existing data",
+    "time": "Arrival time must greater than departure time",
+    "order-existed": "Order existed"
+  },
+
+  "signout": {
+    "title": "Sign out",
+    "comfirmSignout": "Are you sure sign out ? "
+  },
+
+  "signup": {
+    "title": "Sign up",
+    "newUser": "New user",
+    "createAccount": "Let create new account"
+  },
+
+  "account": {
+    "title": "Account",
+    "createAccout": "Create Account",
+    "information": "Personal Information",
+    "phone": "Phone number",
+    "birth": "Date of Birth",
+    "name": "Name",
+    "nationalId": "National ID"
+  },
+
+  "nationalIdIdentifer": {
+    "nationalID": "National ID Card",
+    "instruction": "Please take picture front and back of card",
+    "frontCard": "Front Card",
+    "backCard": "Back Card"
+  },
+
+  "license": {
+    "title": "Driver License",
+    "instruction": "Please take picture front and back of card",
+    "frontCard": "Front Card",
+    "backCard": "Back Card"
+  },
+
+  "face-recognition": {
+    "title": "Face Recognition",
+    "instruction": "Please take a picture of your face"
+  },
+
+  "placeholder": {
+    "name": "Your name",
+    "birth": "Date of birth",
+    "phone": "Phone contact",
+    "vehicle": "Kind of vehicle",
+    "licensePlate": "Your license plate",
+    "nationalId": "Your national ID"
+  },
+
+  "confirm-personal-info": {
+    "title": "Confirm Personal Information",
+    "msg": "Your personal information are correct ?"
+  },
+
+  "language": {
+    "title": "Language",
+    "changeLanguage": "Change language",
+    "languageChoice": "Please choose the language"
+  },
+
+  "vehicle": {
+    "title": "Vehicle",
+    "licensePlate": "Vehicle license plate"
+  },
+
+  "delivery": {
+    "location": "Location",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "timeStart": "Time Start",
+    "timeArrive": "Time Arrive (expected)",
+    "status": "Status",
+    "go": "Let's go",
+    "order": "OrderID"
+  },
+  "recipient": {
+    "title": "Recipient",
+    "name": "Recipient's Name",
+    "phone": "Phone contact"
+  },
+
+  "package": {
+    "title": "Package detail",
+    "detail": "What kind of package ?",
+    "weight": "Weight of package",
+    "note": "Note for driver"
+  },
+
+  "order": {
+    "title": "Order",
+    "ready": "Ready to go",
+    "createOrder": "Create Order",
+    "myOrder": "My Order",
+    "confirmOrder": "Confirm Order",
+    "status": {
+      "pending": "Order is waiting for approve",
+      "approved": "Order has been approved",
+      "rejected": "Order has been deniened"
+    },
+    "complete": "Complete",
+    "complete-order": "Complete Order",
+    "confirm-complete": "Are you sure to complete order",
+    "unvailable": "Not orders yet",
+    "id": "Order ID"
+  },
+  "notification": {
+    "pendding": "You will receive a notification when order has been approve"
+  },
+
+  "payment": {
+    "title": "Payment methods",
+    "select": "Please select a payment method",
+    "Bank": "Bank Transfer",
+    "momo": "Momo",
+    "zaloPay": "ZaloPay",
+    "bankName": "Bank Name",
+    "stk": "Account Number",
+    "name": "Beneficiary's Name",
+    "price": "Amount",
+    "info": "Payment Information",
+    "pay": "Pay"
+  },
+  "bankInstruction": {
+    "copied": "Copied",
+    "banknumberCopied": "Account number copied!",
+    "bankNote": "Please check the account number and beneficiary's name before making the transfer",
+    "order": "Order-ID copied",
+    "orderNote": "Please paste the order-id into the transfer content."
+  },
+
+  "time": {
+    "title": "Time",
+    "departure_time": "Departure Time",
+    "arrival_time": "Arrival Time (expected)"
+  },
+
+  "state": {
+    "confirmOrder": "Confirm Order",
+    "receivedOrder": "Waiting for Pickup",
+    "delivering": "In Transit",
+    "releaseOrder": "Successful Delivery"
+  },
+
+  "loginScreen": {
+    "title": "Login with phone number",
+    "phone": "Phone number",
+    "driverSignUp": "Sign up driver account",
+    "placeHolder": "Please input your phone number",
+    "re-signin": "Please re-signin with your phone number"
+  },
+
+  "verification": {
+    "title": "Enter the verification code",
+    "receiveCode": "Didn’t receive verification code?",
+    "resend": "Resend",
+    "resendOTP": "Resend verification code ",
+    "IncorrectVerification": "Incorrect verification code",
+    "tryAgain": "Please try again",
+    "pendingVerify": "Your account is under verification",
+    "notifyWhenDone": "You will receive notity when account verify successfully"
+  },
+
+  "HomeScreen": {
+    "greeting": "Hello",
+    "slogan": "Let's delivery today !",
+    "pickup": "Pickup",
+    "destination": "Destination",
+    "address": "Address"
+  },
+
+  "DeliveryScreen": {
+    "title": "Delivery Infomation",
+    "driverInfo": "Driver",
+    "vehicleInformation": "Vehicle Information"
+  },
+
+  "SettingScreen": {
+    "title": "Settings",
+    "profile": "Customer Info",
+    "general": "General",
+    "securityPrivacy": "Security & Privacy",
+    "connectedApps": "Connected Apps",
+    "references": "References",
+    "currentVersion": "Version"
+  }
+}

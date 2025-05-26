@@ -9,9 +9,11 @@ export const hex = {
   angry: '#dd3333',
   deepPurple: '#5D2555',
   avatar: '#1BE3B4',
-  nft: '#E0E0E4',
   tooltip: '#E1EDFA',
   tooltipText: '#007AFF',
+  transparent: 'rgba(255,255,255,0)',
+  momo: '#BC2678',
+  bank: '#34C759',
 
   PGreen60: '#016B69',
   PGreen50: '#127E74',

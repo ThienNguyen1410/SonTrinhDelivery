@@ -1,13 +1,60 @@
+import {Action, Actions, Thunk} from 'easy-peasy';
+
 export interface IAccount {
   username: string;
   userId: string;
   birth: string;
   phone: string;
+  avatarUri?: string;
 }
 
-export type AccountContextType = {
+export interface ICustomer extends IAccount {
+  role: string;
+}
+
+export interface IDriver extends IAccount {
+  role: string;
+  vehicle: string;
+  licensePlate: string;
+  nationalID: string;
+  frontNationIDCardUri?: string;
+  backNationIDCardUri?: string;
+  frontLicenseIDCardUri?: string;
+  backLicenseIDCardUri?: string;
+  token: {
+    deviceToken: string;
+    accessToken: string;
+  };
+}
+
+export interface AccountModel {
   account: IAccount;
-  updatePhoneNumber: (phone: string) => void;
-  updateUsername: (name: string) => void;
-  updateBirth: (birth: string) => void;
-};
+  setUsername: Action<this, string>;
+  setUserId: Action<this, string>;
+  setBirth: Action<this, string>;
+  setPhone: Action<this, string>;
+  setAvartarUrl: Action<this, string | undefined>;
+
+  role?: string;
+  setRole: Action<this, string>;
+
+  isAuth: boolean;
+  setAuth: Action<this, boolean>;
+
+  logout: Thunk<this>;
+}
+
+export interface CustomerModel {
+  isAuth: boolean;
+  customer: ICustomer;
+  setUsername: Action<this, string>;
+  setUserId: Action<this, string>;
+  setBirth: Action<this, string>;
+  setPhone: Action<this, string>;
+  setAvartarUrl: Action<this, string | undefined>;
+  accessToken?: string;
+  setCustomer: Action<this, ICustomer>;
+  setCustomerRole: Action<this, string>;
+  setAccessToken: Action<this, string | undefined>;
+  setAuth: Action<this, boolean>;
+}

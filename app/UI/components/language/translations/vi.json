@@ -1,0 +1,243 @@
+{
+  "app": {
+    "name": "Sơn Trình Logistics"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Hủy bỏ",
+    "back": "Quay lại",
+    "continue": "Tiếp tục",
+    "confirm": "Xác nhận",
+    "copy" : "Sao chép",
+    "enterPasscode": "Nhập mật khẩu",
+    "enterVerifyCode": "Nhập mã xác minh",
+    "next": "Tiếp theo",
+    "check": "Kiểm tra",
+    "done": "Xong",
+    "approve": "Chấp thuận",
+    "approved": "Đã xác nhận",
+    "pickup" : "Chờ lấy hàng",
+    "delivering" : "Đang vận chuyển",
+    "completed" : "Giao hàng thành công",
+    "reject": "Từ chối",
+    "verifycode": "Mã xác thực",
+    "sendVerifycationCode": "Mã xác thực đã được gửi đến số điện thoại ",
+    "setting": "Cài đặt",
+    "save": "Lưu",
+    "welcome": "Chào Mừng",
+    "re_check": "Vui lòng kiểm tra lại"
+  },
+
+  "errors": {
+    "invalidPhone": "Số điện thoại không hợp lệ",
+    "invalidOTP": "Mã OTP không hợp lệ",
+    "fieldEmpty": "Có thông tin chưa được nhập",
+    "re-input": "Vui lòng nhập lại",
+    "networkUnAvailable": "Mạng không khả dụng.",
+    "cancelVerification": "Huỷ bỏ xác thực",
+    "accountExisted": "Tài khoản tồn tại",
+    "time": "Thời gian đến phải lớn hơn thời gian khởi hành",
+    "order-existed": "Đơn hàng đã tồn tại"
+  },
+
+  "signout": {
+    "title": "Đăng xuất",
+    "comfirmSignout": "Bạn muốn đăng xuất ?"
+  },
+
+  "signup": {
+    "title": "Đăng kí",
+    "newUser": "Người Dùng Mới",
+    "createAccount": "Có vẻ bạn là người dùng mới, hãy đăng kí tài khoản nhé"
+  },
+
+  "account": {
+    "title": "Tài Khoản",
+    "createAccout": "Tạo tài khoản",
+    "information": "Thông tin cá nhân",
+    "phone": "Số điện thoại",
+    "birth": "Ngày tháng năm sinh",
+    "name": "Quý Danh",
+    "nationalId": "Căn Cước Công Dân"
+  },
+
+  "nationalIdIdentifer": {
+    "nationalID": "Căn cước công dân",
+    "instruction": "Vui lòng xác thực 2 mặt căn cước công dân",
+    "frontCard": "Mặt trước",
+    "backCard": "Mặt sau"
+  },
+
+  "license": {
+    "title": "Giấy phép lái xe",
+    "instruction": "Vui lòng xác thực 2 mặt giấy phép lái xe",
+    "frontCard": "Mặt trước",
+    "backCard": "Mặt sau"
+  },
+
+  "face-recognition": {
+    "title": "Nhận diện khuôn mặt",
+    "instruction": "Vui lòng xác thực khuôn mặt"
+  },
+
+  "placeholder": {
+    "name": "Họ và tên của quý khách",
+    "birth": "Ngày tháng năm sinh của quý khách",
+    "phone": "Số điện thoại liên lạc",
+    "vehicle": "Loại xe quý khách đang sử dụng",
+    "licensePlate": "Biển số xe của quý khách",
+    "nationalId": "Số căn cước công dân"
+  },
+
+  "confirm-personal-info": {
+    "title": "Xác nhận thông tin",
+    "msg": "Quý khách xác nhận thông tin là chính xác"
+  },
+
+  "language": {
+    "title": "Ngôn Ngữ",
+    "changeLanguage": "Thay đổi ngôn ngữ",
+    "languageChoice": "Bạn vui lòng chọn ngôn ngữ muốn thay đổi"
+  },
+
+  "vehicle": {
+    "title": "Loại xe",
+    "licensePlate": "Biển số xe"
+  },
+
+  "delivery": {
+    "location": "Địa điểm",
+    "from": "Địa điểm lấy hàng",
+    "to": "Địa điểm nhận hàng",
+    "date": "Thời gian",
+    "timeStart": "Thời gian đi",
+    "timeArrive": "Thời gian đến (dự kiến)",
+    "status": "Trạng thái",
+    "go": "Xuất phát",
+    "order" : "Đơn Hàng"
+  },
+
+  "recipient": {
+    "title": "Người Nhận",
+    "name": "Tên Người Nhận",
+    "phone": "Số Điện Thoại Liên Lạc"
+  },
+
+  "package": {
+    "title": "Thông tin đơn hàng",
+    "detail": "Loại hàng hoá ?",
+    "weight": "Trọng lượng của đơn hàng",
+    "note": "Ghi chú cho tài xế"
+  },
+
+  "order": {
+    "title": "Đặt hàng",
+    "ready" : "Đơn hàng sẵn sàng",
+    "createOrder": "Tạo Đơn Hàng",
+    "myOrder": "Đơn hàng của bạn",
+    "confirmOrder": "Xác nhận đơn hàng",
+    "status": {
+      "pending": "Đơn hàng đang đợi được duyệt",
+      "approved": "Đơn hàng đã được duyệt",
+      "rejected": "Đơn hàng đã bị từ chối"
+    },
+    "complete": "Hoàn Thành",
+    "complete-order": "Hoàn thành đơn hàng",
+    "confirm-complete": "Bạn chắc chắn muốn kết thúc đơn hàng",
+    "unvailable": "Chưa có đơn hàng nào",
+    "id" : "Mã  đơn hàng "
+  },
+  "notification": {
+    "pendding": "Bạn sẽ nhận được thông báo khi đơn hàng được duyệt"
+  },
+
+  "payment": {
+    "title": "Phương thức thanh toán",
+    "select": "Vui lòng chọn phương thức thanh toán",
+    "Bank": "Chuyển khoản ngân hàng",
+    "momo": "Momo",
+    "zaloPay": "ZaloPay",
+    "bankName": "Ngân hàng",
+    "stk": "Số tài khoản",
+    "name": "Tên người thụ hưởng",
+    "price": "Số tiền",
+    "info": "Thông tin thanh toán",
+    "pay" : "Thanh toán"
+  },
+
+  "bankInstruction": {
+    "copied": "Đã sao chép",
+    "banknumberCopied": "Đã sao chép số tài khoản !",
+    "bankNote": "Quý khách khi chuyển khoản vui lòng kiểm tra số tài và tên người thụ hưởng",
+    "order" : "Đã sao chép mã đơn hàng",
+    "orderNote" : "Quý khách vui lòng dán mã đơn hàng vào nội dung chuyển khoản"
+
+  },
+
+  "time": {
+    "title": "Thời gian",
+    "departure_time": "Thời gian khởi hành",
+    "arrival_time": "Thời gian đến (dự kiến)"
+  },
+
+  "state" : {
+    "confirmOrder" : "Xác nhận đơn hàng",
+    "receivedOrder" : "Chờ lấy hàng",
+    "delivering" : "Đang vận chuyển",
+    "releaseOrder": "Giao hàng thành công"
+  },
+
+  "loginScreen": {
+    "title": "Đăng nhập",
+    "phone": "Số điện thoại",
+    "driverSignUp": "Đăng kí làm tài xế",
+    "placeHolder": "Vui lòng nhập số điện thoại",
+    "re-signin": "Vui lòng đăng nhập"
+  },
+
+  "createPasscode": {
+    "title": "Tạo mật khẩu",
+    "caption": "Nhập mật khẩu",
+    "caption2": "Nhập lại mật khẩu",
+    "confirm": "Xác nhận mật khẩu",
+    "confirm2": "Tạo mật khẩu",
+    "error": "Mật khẩu không khớp. Vui lòng thử lại."
+  },
+  "registrationCompleted": {
+    "title": "Đăng ký thành công"
+  },
+  "verification": {
+    "title": "Nhập mã xác thực",
+    "receiveCode": "Không nhận được mã xác thực?",
+    "resend": "Gửi lại",
+    "resendOTP": "Gửi lại mã xác minh thành công",
+    "IncorrectVerification": "Mã xác thực không đúng",
+    "tryAgain": "Vui lòng thử lại",
+    "pendingVerify": "Tài khoản đang được xác thực",
+    "notifyWhenDone": "Chúng tôi sẽ gửi thông báo cho bạn khi tài khoản được xác thực thành công"
+  },
+
+  "HomeScreen": {
+    "greeting": "Xin chào !",
+    "slogan": "Bạn muốn vận chuyển gì hôm nay nào",
+    "pickup": "Nơi Lấy Hàng",
+    "destination": "Nơi Nhận Hàng",
+    "address": "Địa điểm"
+  },
+
+  "DeliveryScreen": {
+    "title": "Thông tin vận chuyển",
+    "driverInfo": "Thông tin tài xế",
+    "vehicleInformation": "Thông tin phương tiện"
+  },
+
+  "SettingScreen": {
+    "title": "Cài đặt",
+    "profile": "Thông tin khách hàng",
+    "general": "Chung",
+    "securityPrivacy": "Bảo mật & Quyền riêng tư",
+    "connectedApps": "Ứng dụng đã kết nối",
+    "references": "Thông tin tham khảo",
+    "currentVersion": "Phiên bản"
+  }
+}

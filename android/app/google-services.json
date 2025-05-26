@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "622638406230",
+    "firebase_url": "https://delivery-be444-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "delivery-be444",
+    "storage_bucket": "delivery-be444.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622638406230:android:1825453bec25eac98839f7",
+        "android_client_info": {
+          "package_name": "com.sontrinh.logistic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622638406230-mbc1h0qbrquvf92aqd6e0vaii42m2r2o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sontrinh.logistic",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "622638406230-161gqgr1doqd8n5rcsq0hd3ilh34q376.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCeN1ucQeJNV3pLL-apxfnDDzVRwtAGCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622638406230-161gqgr1doqd8n5rcsq0hd3ilh34q376.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "622638406230-6q39ecu2045sfuev6g88thsgb01b9lko.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.sontring.delivery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
